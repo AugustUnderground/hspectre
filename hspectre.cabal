@@ -1,0 +1,89 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.34.4.
+--
+-- see: https://github.com/sol/hpack
+
+name:           hspectre
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/augustunderground/hspectre#readme>
+homepage:       https://github.com/augustunderground/hspectre#readme
+bug-reports:    https://github.com/augustunderground/hspectre/issues
+author:         Yannick Uhlmann
+maintainer:     augustunderground@protonmail.com
+copyright:      2022 Yannick Uhlmann
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    CHANGELOG.md
+foreign-library spectre
+  type:                native-shared
+  other-modules:       SharedSpectre, Spectre, Spectre.Interactive
+  build-depends:
+    base >=4.7 && <5
+    , hnutmeg
+    , bytestring
+    , posix-pty
+    , command
+    , directory
+    , temporary
+    , containers
+    , vector
+    , regex-tdfa
+    , raw-strings-qq
+  hs-source-dirs:      src
+  c-sources:           csrc/spectre.c
+  default-language:    Haskell2010
+
+source-repository head
+  type: git
+  location: https://github.com/augustunderground/hspectre
+
+library
+  exposed-modules:
+      SharedSpectre
+      Spectre
+      Spectre.Interactive
+  other-modules:
+      Paths_hspectre
+  hs-source-dirs:
+      src
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -fobject-code
+  build-depends:
+      base >=4.7 && <5
+    , bytestring
+    , command
+    , containers
+    , directory
+    , hnutmeg
+    , posix-pty
+    , raw-strings-qq
+    , regex-tdfa
+    , temporary
+    , vector
+  default-language: Haskell2010
+
+test-suite hspectre-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_hspectre
+  hs-source-dirs:
+      test
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -fobject-code -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , bytestring
+    , command
+    , containers
+    , directory
+    , hnutmeg
+    , hspectre
+    , posix-pty
+    , raw-strings-qq
+    , regex-tdfa
+    , temporary
+    , vector
+  default-language: Haskell2010

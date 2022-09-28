@@ -1,0 +1,13 @@
+cradle:
+  stack:
+    - path: "./src"
+      component: "hspectre:lib"
+
+    - path: "./app/Main.hs"
+      component: "hspectre:exe:hspectre-exe"
+
+    - path: "./app/Paths_hspectre.hs"
+      component: "hspectre:exe:hspectre-exe"
+
+    - path: "./test"
+      component: "hspectre:test:hspectre-test"
