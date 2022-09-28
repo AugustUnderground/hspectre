@@ -12,9 +12,18 @@ $ stack build
 
 ## Examples
 
-The `./example` directory contains demos on how to access the shared library
-from other languages. These only works _after_ the libray has been built, as
-they depend on the `./lib` direcotry.
+```haskell
+import Spectre.Interactive
+
+main :: IO ()
+main = do
+    session <- initSession ["path/to/pdk/lib"] "path/to/netlist.scs"
+    analyses <- listAnalysis session
+    print analyses
+    results <- runAll session
+    print results
+    exitSession session
+```
 
 ## Interactive
 
