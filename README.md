@@ -1,24 +1,14 @@
-# SharedSpectre
+# HSpectre
 
-Haskell Module and shared object for communicating with Cadence Spectre.
+Haskell Module for communicating with Cadence Spectre.
 
 [Documentation](https://augustunderground.github.io/hspectre)
 
 ## Build
 
 ```sh
-$ gmake
+$ stack build
 ```
-
-This will create a `./lib` directory containing `libspectre.so`
-
-## Install
-
-```sh
-$ gmake install
-```
-
-This will install the library and header file.
 
 ## Examples
 

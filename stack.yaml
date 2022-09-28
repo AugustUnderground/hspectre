@@ -4,12 +4,12 @@ compiler: ghc-8.10.4
 packages:
 - .
 
-  # ghc-options:
-  #   "$locals": -funfolding-use-threshold=16 -fexcess-precision -optc-O3 -optc-ffast-math -O2 # -v
+ghc-options:
+  "$locals": -funfolding-use-threshold=16 -fexcess-precision -optc-O3 -optc-ffast-math -O2 # -v
 
-  # apply-ghc-options: locals
+apply-ghc-options: locals
 
-  # allow-newer: true
+allow-newer: true
 
 extra-deps:
   - posix-pty-0.2.2@sha256:dd777df258b3b95fe01612c1204cde972ad1323c3289591ecc844ecb29e55e2b,1826
