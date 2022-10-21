@@ -7,12 +7,14 @@
 -- | Communication Between Haskell and Spectre
 module Spectre.Interactive ( Session (..)
                            , Parameter
-                           , initSession
-                           , exitSession
+                           , startSession
+                           , startSession'
+                           , stopSession
                            , runAll
                            , listAnalysis
                            , runAnalysis
                            , parameterValue
+                           , setParameter
                            ) where
 
 import           Spectre
@@ -29,12 +31,12 @@ import           Text.RawString.QQ
 import           Text.Regex.TDFA
 
 -- | Spectre Commands
-data Command = Close                -- Quit the Session
-             | RunAll               -- Run all simulation analyses
-             | ListAnalysis         -- Retrieve Analyses in netlist
-             | RunAnalysis Analysis -- Run specified analysis
-             | Alter String Float   -- Alter a Parameter
-             | GetAttribute String  -- Get Parameter Value
+data Command = Close                      -- Quit the Session
+             | RunAll                     -- Run all simulation analyses
+             | ListAnalysis               -- Retrieve Analyses in netlist
+             | RunAnalysis Analysis       -- Run specified analysis
+             | SetAttribute String Double -- Alter a Parameter
+             | GetAttribute String        -- Get Parameter Value
 
 -- | Spectre Interactive Session
 data Session = Session { pty :: Pty      -- The Terminal
@@ -69,42 +71,46 @@ consumeOutput pty' = do
        else BS.append output <$> consumeOutput pty'
 
 -- | Initialize spectre session with given include path and netlist
-initSession :: [String] -> String -> IO Session
-initSession includes netlist = do
-    dir' <- createTempDirectory "/tmp" "hspectre"
+startSession' :: [FilePath] -> FilePath -> IO Session
+startSession' includes netlist = createTempDirectory "/tmp" "hspectre" 
+                                    >>= startSession includes netlist
 
-    let ahdl = dir' ++ "/ahdl"
-        raw  = dir' ++ "/hspectre.raw"
+-- | Initialize spectre session with given include path, netlist and temp dir
+startSession :: [FilePath] -> FilePath -> FilePath -> IO Session
+startSession inc net dir = do
+    let ahdl = dir ++ "/ahdl"
+        raw  = dir ++ "/hspectre.raw"
 
     let args = [ "-64", "+interactive"
                , "-format nutbin"
                , "-ahdllibdir " ++ ahdl
                , "-log"
                , "-raw " ++ raw
-               ] ++ map ("-I" ++) includes ++ [ netlist ]
+               ] ++ map ("-I" ++) inc ++ [ net ]
     pty' <- fst <$> spawnWithPty Nothing True spectre args (80,100)
     discardOutput pty'
-    pure $ Session pty' dir'
+    pure $ Session pty' dir
   where
     spectre  = "spectre"
 
 -- | Execute a spectre Command which changes the state but returns nothing
 exec_ :: Session -> Command -> IO ()
-exec_ Session{..} Close                  = writePty pty cmd >> readPty pty >> pure ()
+exec_ Session{..} Close                      = writePty pty cmd >> readPty pty >> pure ()
   where
     cmd = "(sclQuit)\n"
-exec_ Session{..} RunAll                 = writePty pty cmd >> discardOutput pty
+exec_ Session{..} RunAll                     = writePty pty cmd >> discardOutput pty
   where
     cmd = "(sclRun \"all\")\n"
-exec_ Session{..} (RunAnalysis analysis) = writePty pty cmd >> discardOutput pty
+exec_ Session{..} (RunAnalysis analysis)     = writePty pty cmd >> discardOutput pty
   where
     cmd = CS.pack $ "(sclRunAnalysis (sclGetAnalysis \"" 
        ++ map toLower (show analysis) ++ "\"))\n"
-exec_ Session{..} (Alter param value)    = writePty pty cmd >> discardOutput pty
+exec_ Session{..} (SetAttribute param value) = writePty pty cmd >> discardOutput pty
   where
-    cmd = CS.pack $ "(sclSetAttribute (sclGetParameter (sclGetCircuit \"\") \"" 
-       ++ param ++ "\") \"" ++ show value ++ "\")\n"
-exec_ _           _                      = pure ()
+    cmd = CS.pack 
+        $ "(sclGetAttribute (sclGetParameter (sclGetCircuit \"\") \"" 
+                ++ param ++ "\") \"value\" " ++ show value ++ ")\n"
+exec_ _           _                          = pure ()
 
 -- | Execute spectre command and return some result
 exec :: Session -> Command -> IO BS.ByteString
@@ -153,14 +159,18 @@ runAnalysis :: Session -> Analysis -> IO NutMeg
 runAnalysis session analysis = exec_ session (RunAnalysis analysis) 
                                     >> results session
 
--- | Netlist Parameter
+-- | Get Netlist Parameter
 parameterValue :: Session -> Parameter -> IO Double
 parameterValue session param = read . CS.unpack 
                             <$> exec session (GetAttribute param)
 
+-- | Set Netlist Parameter
+setParameter :: Session -> Parameter -> Double -> IO ()
+setParameter session param value = exec_ session (SetAttribute param value)
+
 -- | Close a spectre interactive session
-exitSession :: Session -> IO ()
-exitSession s@Session{..} = do
+stopSession :: Session -> IO ()
+stopSession s@Session{..} = do
     exec_ s Close
     closePty pty
     removeDirectoryRecursive dir
