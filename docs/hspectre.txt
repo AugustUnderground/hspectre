@@ -43,11 +43,15 @@ Session :: Pty -> FilePath -> Session
 -- | Name of a netlist Parameter
 type Parameter = String
 
+-- | Initialize spectre session with given include path, netlist and temp
+--   dir
+startSession :: [FilePath] -> FilePath -> FilePath -> IO Session
+
 -- | Initialize spectre session with given include path and netlist
-initSession :: [String] -> String -> IO Session
+startSession' :: [FilePath] -> FilePath -> IO Session
 
 -- | Close a spectre interactive session
-exitSession :: Session -> IO ()
+stopSession :: Session -> IO ()
 
 -- | Run all simulation analyses
 runAll :: Session -> IO NutMeg
@@ -58,5 +62,8 @@ listAnalysis :: Session -> IO (Map String Analysis)
 -- | Run Selected Analysis only
 runAnalysis :: Session -> Analysis -> IO NutMeg
 
--- | Netlist Parameter
+-- | Get Netlist Parameter
 parameterValue :: Session -> Parameter -> IO Double
+
+-- | Set Netlist Parameter
+setParameter :: Session -> Parameter -> Double -> IO ()
