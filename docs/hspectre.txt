@@ -63,7 +63,13 @@ listAnalysis :: Session -> IO (Map String Analysis)
 runAnalysis :: Session -> Analysis -> IO NutMeg
 
 -- | Get Netlist Parameter
-parameterValue :: Session -> Parameter -> IO Double
+getParameter :: Session -> Parameter -> IO Double
 
 -- | Set Netlist Parameter
 setParameter :: Session -> Parameter -> Double -> IO ()
+
+-- | Get a list of Parameters as Map
+getParameters :: Session -> [Parameter] -> IO (Map Parameter Double)
+
+-- | Get a list of Parameters
+setParameters :: Session -> Map Parameter Double -> IO (Map Parameter ())
