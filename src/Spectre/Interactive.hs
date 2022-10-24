@@ -13,8 +13,10 @@ module Spectre.Interactive ( Session (..)
                            , runAll
                            , listAnalysis
                            , runAnalysis
-                           , parameterValue
+                           , getParameter
                            , setParameter
+                           , getParameters
+                           , setParameters
                            ) where
 
 import           Spectre
@@ -160,13 +162,23 @@ runAnalysis session analysis = exec_ session (RunAnalysis analysis)
                                     >> results session
 
 -- | Get Netlist Parameter
-parameterValue :: Session -> Parameter -> IO Double
-parameterValue session param = read . CS.unpack 
-                            <$> exec session (GetAttribute param)
+getParameter :: Session -> Parameter -> IO Double
+getParameter session param = read . CS.unpack 
+                          <$> exec session (GetAttribute param)
+
+-- | Get a list of Parameters as Map
+getParameters :: Session -> [Parameter] -> IO (M.Map Parameter Double)
+getParameters session params = do
+    values <- mapM (getParameter session) params
+    pure . M.fromList $ zip params values
 
 -- | Set Netlist Parameter
 setParameter :: Session -> Parameter -> Double -> IO ()
 setParameter session param value = exec_ session (SetAttribute param value)
+
+-- | Get a list of Parameters
+setParameters :: Session -> M.Map Parameter Double -> IO (M.Map Parameter ())
+setParameters session = M.traverseWithKey (setParameter session) 
 
 -- | Close a spectre interactive session
 stopSession :: Session -> IO ()
