@@ -13,12 +13,26 @@ module Spectre
 
 -- | Available Simulation Analyses
 data Analysis
+
+-- | AC Analysis
 AC :: Analysis
+
+-- | DC Analysis
 DC :: Analysis
+
+-- | Offset Analysis
 DCMATCH :: Analysis
+
+-- | Stability Analysis
 STB :: Analysis
+
+-- | Transient Analysis
 TRAN :: Analysis
+
+-- | Noise Analysis
 NOISE :: Analysis
+
+-- | XF Analysis
 XF :: Analysis
 
 -- | Get Spectre Version

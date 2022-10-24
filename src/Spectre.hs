@@ -11,13 +11,13 @@ import System.Command
 import System.IO.Temp
 
 -- | Available Simulation Analyses
-data Analysis = AC      -- AC
-              | DC      -- DC
-              | DCMATCH -- Offset
-              | STB     -- Stability
-              | TRAN    -- Transient
-              | NOISE   -- Noise
-              | XF      -- XF
+data Analysis = AC      -- ^ AC Analysis
+              | DC      -- ^ DC Analysis
+              | DCMATCH -- ^ Offset Analysis
+              | STB     -- ^ Stability Analysis
+              | TRAN    -- ^ Transient Analysis
+              | NOISE   -- ^ Noise Analysis
+              | XF      -- ^ XF Analysis
               deriving (Eq)
 
 -- | Show instance for analyses are lowercase
