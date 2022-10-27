@@ -25,7 +25,6 @@ dependencies:
 - bytestring
 - posix-pty
 - command
-- deepseq
 - directory
 - temporary
 - containers

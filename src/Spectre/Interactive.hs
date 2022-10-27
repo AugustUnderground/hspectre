@@ -20,8 +20,6 @@ module Spectre.Interactive ( Session (..)
                            ) where
 
 import           Spectre
-import           Control.DeepSeq
-import           Control.Monad
 import qualified Data.ByteString       as BS
 import qualified Data.ByteString.Char8 as CS
 import           Data.Char
@@ -136,23 +134,9 @@ exec Session{..} ListAnalysis         = BS.intercalate "\n" . map parse
                 in CS.pack $ unwords grps
 exec _ _                              = pure prompt
 
--- | Read results from file
-readResults :: Session -> IO NutMeg
-readResults Session{..} = parseNutMeg <$> readNutRaw (dir ++ "/hspectre.raw")
-
--- | Remove raw file
-cleanUp :: Session -> IO ()
-cleanUp Session{..} = do
-    doesFileExist raw >>= flip when (removeFile raw)
-  where
-    raw = dir ++ "/hspectre.raw"
-
 -- | Simulation Results
 results :: Session -> IO NutMeg
-results session = do
-    raw <- readResults session
-    raw `deepseq` cleanUp session
-    pure raw
+results Session{..} = parseNutMeg <$> readNutRaw (dir ++ "/hspectre.raw")
 
 -- | Run all simulation analyses
 runAll :: Session -> IO NutMeg

@@ -37,7 +37,6 @@ library
     , bytestring
     , command
     , containers
-    , deepseq
     , directory
     , hnutmeg
     , posix-pty
@@ -60,7 +59,6 @@ test-suite hspectre-test
     , bytestring
     , command
     , containers
-    , deepseq
     , directory
     , hnutmeg
     , hspectre
