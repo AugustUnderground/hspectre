@@ -72,6 +72,15 @@ consumeOutput pty' = do
        then pure output 
        else BS.append output <$> consumeOutput pty'
 
+-- | Write offset to file
+writeOffset :: Session -> Int -> IO ()
+writeOffset Session{..} offset = BS.writeFile (dir ++ "/offset") . CS.pack 
+                               $ show offset
+
+-- | Read offset
+readOffset :: Session -> IO Int
+readOffset Session{..} = read . CS.unpack <$> BS.readFile (dir ++ "/offset")
+
 -- | Initialize spectre session with given include path and netlist
 startSession' :: [FilePath] -> FilePath -> IO Session
 startSession' includes netlist = createTempDirectory "/tmp" "hspectre" 
@@ -86,12 +95,17 @@ startSession inc net dir' = do
     let args = [ "-64", "+interactive"
                , "-format nutbin"
                , "-ahdllibdir " ++ ahdl
+               , "+multithread"
                , "-log"
                , "-raw " ++ raw
                ] ++ map ("-I" ++) inc ++ [ net ]
     pty' <- fst <$> spawnWithPty Nothing True spectre args (80,100)
     discardOutput pty'
-    pure $ Session pty' dir'
+
+    let session = Session pty' dir'
+    writeOffset session 0
+
+    pure session
   where
     spectre  = "spectre"
 
@@ -136,7 +150,11 @@ exec _ _                              = pure prompt
 
 -- | Simulation Results
 results :: Session -> IO NutMeg
-results Session{..} = parseNutMeg <$> readNutRaw (dir ++ "/hspectre.raw")
+results s@Session{..} = do
+    off' <- readOffset s
+    (nut, off) <- parseNutMeg' off' <$> readNutRaw (dir ++ "/hspectre.raw")
+    writeOffset s off
+    pure nut
 
 -- | Run all simulation analyses
 runAll :: Session -> IO NutMeg
