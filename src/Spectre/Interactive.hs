@@ -79,9 +79,9 @@ startSession' includes netlist = createTempDirectory "/tmp" "hspectre"
 
 -- | Initialize spectre session with given include path, netlist and temp dir
 startSession :: [FilePath] -> FilePath -> FilePath -> IO Session
-startSession inc net dir = do
-    let ahdl = dir ++ "/ahdl"
-        raw  = dir ++ "/hspectre.raw"
+startSession inc net dir' = do
+    let ahdl = dir' ++ "/ahdl"
+        raw  = dir' ++ "/hspectre.raw"
 
     let args = [ "-64", "+interactive"
                , "-format nutbin"
@@ -91,7 +91,7 @@ startSession inc net dir = do
                ] ++ map ("-I" ++) inc ++ [ net ]
     pty' <- fst <$> spawnWithPty Nothing True spectre args (80,100)
     discardOutput pty'
-    pure $ Session pty' dir
+    pure $ Session pty' dir'
   where
     spectre  = "spectre"
 
