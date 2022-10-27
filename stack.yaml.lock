@@ -33,16 +33,16 @@ packages:
   original:
     hackage: hmatrix-csv-0.1.0.2@sha256:687460573413dbb23ba3eeff95e9fac342a2d439db1006846767a095e7f23356,1031
 - completed:
-    size: 2142274
-    url: https://github.com/AugustUnderground/hnutmeg/archive/f49b35152268f4332e3cef14463e69b8c0706f60.tar.gz
+    size: 2142463
+    url: https://github.com/AugustUnderground/hnutmeg/archive/3d42a376dc2e39ba8deafa71e23bfbd09587c523.tar.gz
     name: hnutmeg
     version: 0.1.0.0
-    sha256: 71cc53f4122146e6fb745dbd432eba31b9f072b2b67f8bd41baf84db484a8c68
+    sha256: ae36ade743965509b83ff492763e3834c3b6128924d3c00a89a4953443f0e4a3
     pantry-tree:
       size: 1578
-      sha256: 27151c0e27beb5290c3c3df7cec34cb278492c4d063225b89f177cb17fa435d9
+      sha256: 3ae83327310904b233fe7d8a165316a10dd3cb62ae9aa0d4c148a5c26dabb1f9
   original:
-    url: https://github.com/AugustUnderground/hnutmeg/archive/f49b35152268f4332e3cef14463e69b8c0706f60.tar.gz
+    url: https://github.com/AugustUnderground/hnutmeg/archive/3d42a376dc2e39ba8deafa71e23bfbd09587c523.tar.gz
 snapshots:
 - completed:
     size: 587113
