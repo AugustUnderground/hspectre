@@ -124,7 +124,7 @@ exec_ Session{..} (RunAnalysis analysis)     = writePty pty cmd >> discardOutput
 exec_ Session{..} (SetAttribute param value) = writePty pty cmd >> discardOutput pty
   where
     cmd = CS.pack 
-        $ "(sclGetAttribute (sclGetParameter (sclGetCircuit \"\") \"" 
+        $ "(sclSetAttribute (sclGetParameter (sclGetCircuit \"\") \"" 
                 ++ param ++ "\") \"value\" " ++ show value ++ ")\n"
 exec_ _           _                          = pure ()
 

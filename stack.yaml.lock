@@ -7,45 +7,45 @@ packages:
 - completed:
     hackage: posix-pty-0.2.2@sha256:dd777df258b3b95fe01612c1204cde972ad1323c3289591ecc844ecb29e55e2b,1826
     pantry-tree:
-      size: 512
       sha256: 1165406e7998cf570fad6274a406c0e8c08357a1e60668f9cc8c0f269f457e30
+      size: 512
   original:
     hackage: posix-pty-0.2.2@sha256:dd777df258b3b95fe01612c1204cde972ad1323c3289591ecc844ecb29e55e2b,1826
 - completed:
     hackage: command-0.1.1@sha256:5232b98c195bc3b8a6f35c55ccd2fa424abe355ca54cfcd836bbe7e494834773,1110
     pantry-tree:
-      size: 167
       sha256: 1ecfeb4b1367de6b489dbda20be05df78beb07f71d7c0b1f471fab1cd9c8044a
+      size: 167
   original:
     hackage: command-0.1.1@sha256:5232b98c195bc3b8a6f35c55ccd2fa424abe355ca54cfcd836bbe7e494834773,1110
 - completed:
     hackage: KMP-0.2.0.0@sha256:6dfbac03ef00ebd9347234732cb86a40f62ab5a80c0cc6bedb8eb51766f7df28,2562
     pantry-tree:
-      size: 387
       sha256: 13d08a26ae53a94126e69c605865e8583f401617cf4f06f5f8c72b04d1ce3bcb
+      size: 387
   original:
     hackage: KMP-0.2.0.0@sha256:6dfbac03ef00ebd9347234732cb86a40f62ab5a80c0cc6bedb8eb51766f7df28,2562
 - completed:
     hackage: hmatrix-csv-0.1.0.2@sha256:687460573413dbb23ba3eeff95e9fac342a2d439db1006846767a095e7f23356,1031
     pantry-tree:
-      size: 215
       sha256: e61f0341b67f432dbd40ab8db106a2b18f441528534b5d05ce040fc3dbdd779c
+      size: 215
   original:
     hackage: hmatrix-csv-0.1.0.2@sha256:687460573413dbb23ba3eeff95e9fac342a2d439db1006846767a095e7f23356,1031
 - completed:
+    name: hnutmeg
+    pantry-tree:
+      sha256: 3ae83327310904b233fe7d8a165316a10dd3cb62ae9aa0d4c148a5c26dabb1f9
+      size: 1578
+    sha256: ae36ade743965509b83ff492763e3834c3b6128924d3c00a89a4953443f0e4a3
     size: 2142463
     url: https://github.com/AugustUnderground/hnutmeg/archive/3d42a376dc2e39ba8deafa71e23bfbd09587c523.tar.gz
-    name: hnutmeg
     version: 0.1.0.0
-    sha256: ae36ade743965509b83ff492763e3834c3b6128924d3c00a89a4953443f0e4a3
-    pantry-tree:
-      size: 1578
-      sha256: 3ae83327310904b233fe7d8a165316a10dd3cb62ae9aa0d4c148a5c26dabb1f9
   original:
     url: https://github.com/AugustUnderground/hnutmeg/archive/3d42a376dc2e39ba8deafa71e23bfbd09587c523.tar.gz
 snapshots:
 - completed:
-    size: 587113
-    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/18/6.yaml
-    sha256: f74c482d7c93739ecf3abfbc0f2dea1c20a2dfb2462c689846ed55a9653b66f7
-  original: lts-18.6
+    sha256: 428ec8d5ce932190d3cbe266b9eb3c175cd81e984babf876b64019e2cbe4ea68
+    size: 590100
+    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/18/28.yaml
+  original: lts-18.28
