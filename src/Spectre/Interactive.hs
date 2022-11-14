@@ -91,12 +91,13 @@ startSession :: [FilePath] -> FilePath -> FilePath -> IO Session
 startSession inc net dir' = do
     let ahdl = dir' ++ "/ahdl"
         raw  = dir' ++ "/hspectre.raw"
+        log' = dir' ++ "/hspectre.log"
 
     let args = [ "-64", "+interactive"
                , "-format nutbin"
                , "-ahdllibdir " ++ ahdl
                , "+multithread"
-               , "-log"
+               , "=log " ++ log'
                , "-raw " ++ raw
                ] ++ map ("-I" ++) inc ++ [ net ]
     pty' <- fst <$> spawnWithPty Nothing True spectre args (80,100)
