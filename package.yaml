@@ -25,6 +25,7 @@ dependencies:
 - bytestring
 - posix-pty
 - command
+- process
 - directory
 - temporary
 - containers

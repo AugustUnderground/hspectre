@@ -26,6 +26,7 @@ import           Data.Char
 import qualified Data.Map              as M
 import           Data.Maybe                  (fromJust)
 import           Data.NutMeg
+import           System.Process
 import           System.Posix.Pty
 import           System.IO.Temp
 import           System.Directory
@@ -74,7 +75,7 @@ consumeOutput pty' = do
 
 -- | Write offset to file
 writeOffset :: Session -> Int -> IO ()
-writeOffset Session{..} offset = BS.writeFile (dir ++ "/offset") . CS.pack 
+writeOffset Session{..} offset = BS.writeFile (dir ++ "/offset") . CS.pack
                                $ show offset
 
 -- | Read offset
@@ -100,6 +101,10 @@ startSession inc net dir' = do
                , "=log " ++ log'
                , "-raw " ++ raw
                ] ++ map ("-I" ++) inc ++ [ net ]
+
+    _ <- spawnCommand $ "mkfifo " ++ log'
+    _ <- spawnCommand $ "cat "    ++ log' ++ " > /dev/null"
+
     pty' <- fst <$> spawnWithPty Nothing True spectre args (80,100)
     discardOutput pty'
 
