@@ -1,6 +1,8 @@
 {-# OPTIONS_GHC -Wall #-}
 
+{-# LANGUAGE StrictData #-}
 {-# LANGUAGE QuasiQuotes #-}
+{-# LANGUAGE BangPatterns #-}
 {-# LANGUAGE RecordWildCards #-}
 {-# LANGUAGE OverloadedStrings #-}
 
@@ -26,6 +28,7 @@ import           Data.Char
 import qualified Data.Map              as M
 import           Data.Maybe                  (fromJust)
 import           Data.NutMeg
+import           Control.Monad               (when)
 import           System.Process
 import           System.Posix.Pty
 import           System.IO.Temp
@@ -53,25 +56,17 @@ type Parameter = String
 prompt :: BS.ByteString
 prompt = "> " :: BS.ByteString
 
--- | Read Lines from Session Terminal
-readLines :: Pty -> IO [BS.ByteString]
-readLines pty' = CS.lines <$> readPty pty'
-
--- | Discard output from session terminal
-discardOutput :: Pty -> IO ()
-discardOutput pty' = do
-    l <- last <$> readLines pty'
-    if l == prompt 
-       then pure ()
-       else discardOutput pty'
-
 -- | Consume all output from Pty
 consumeOutput :: Pty -> IO BS.ByteString
 consumeOutput pty' = do
-    output <- readPty pty'
+    output <- drainOutput pty' >> readPty pty'
     if BS.isSuffixOf prompt output 
        then pure output 
        else BS.append output <$> consumeOutput pty'
+
+-- | Discard output from session terminal
+discardOutput :: Pty -> IO ()
+discardOutput pty' = consumeOutput pty' >> pure ()
 
 -- | Write offset to file
 writeOffset :: Session -> Int -> IO ()
@@ -90,30 +85,33 @@ startSession' includes netlist = createTempDirectory "/tmp" "hspectre"
 -- | Initialize spectre session with given include path, netlist and temp dir
 startSession :: [FilePath] -> FilePath -> FilePath -> IO Session
 startSession inc net dir' = do
-    let ahdl = dir' ++ "/ahdl"
-        raw  = dir' ++ "/hspectre.raw"
-        log' = dir' ++ "/hspectre.log"
+    
+    doesFileExist log' >>= flip when (removeFile log')
 
-    let args = [ "-64", "+interactive"
-               , "-format nutbin"
-               , "-ahdllibdir " ++ ahdl
-               , "+multithread"
-               , "=log " ++ log'
-               , "-raw " ++ raw
-               ] ++ map ("-I" ++) inc ++ [ net ]
+    createDirectoryIfMissing True dir'
 
-    _ <- spawnCommand $ "mkfifo " ++ log'
-    _ <- spawnCommand $ "cat "    ++ log' ++ " > /dev/null"
-
+    _ <- spawnCommand $! "mkfifo " ++ log'
     pty' <- fst <$> spawnWithPty Nothing True spectre args (80,100)
-    discardOutput pty'
+    _ <- spawnCommand $! "cat "    ++ log' ++ " > /dev/null &"
 
     let session = Session pty' dir'
     writeOffset session 0
 
+    _ <- threadWaitReadPty pty' >> consumeOutput pty'
+
     pure session
   where
-    spectre  = "spectre"
+    spectre = "spectre"
+    ahdl    = dir' ++ "/ahdl"
+    raw     = dir' ++ "/hspectre.raw"
+    log'    = dir' ++ "/hspectre.log"
+    args    = [ "-64", "+interactive"
+              , "-format nutbin"
+              , "-ahdllibdir " ++ ahdl
+              , "+multithread"
+              , "=log " ++ log'
+              , "-raw " ++ raw
+              ] ++ map ("-I" ++) inc ++ [ net ]
 
 -- | Execute a spectre Command which changes the state but returns nothing
 exec_ :: Session -> Command -> IO ()
@@ -138,20 +136,21 @@ exec_ _           _                          = pure ()
 exec :: Session -> Command -> IO BS.ByteString
 exec Session{..} (GetAttribute param) = fromJust . BS.stripSuffix "\r" 
                                       . last . init . CS.lines 
-                                     <$> (writePty pty cmd >> consumeOutput pty)
+                                     <$> ( writePty pty cmd >> consumeOutput pty)
   where
     cmd = CS.pack 
         $ "(sclGetAttribute (sclGetParameter (sclGetCircuit \"\") \"" 
                 ++ param ++ "\") \"value\")\n"
 exec Session{..} ListAnalysis         = BS.intercalate "\n" . map parse
                                       . takeWhile (/= ")\r") . drop 1 . CS.lines 
-                                     <$> (writePty pty cmd >> consumeOutput pty)
+                                     <$> ( writePty pty cmd >> consumeOutput pty)
   where
     cmd = "(sclListAnalysis)\n" :: BS.ByteString
     rex = [r|"(.+)" *"(.+)\"|]  :: String
     parse :: BS.ByteString -> BS.ByteString
     parse bs = let (_,_,_,grps) = CS.unpack bs =~ rex :: (String, String, String, [String])
                 in CS.pack $ unwords grps
+
 exec _ _                              = pure prompt
 
 -- | Simulation Results
