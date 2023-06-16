@@ -35,6 +35,9 @@ NOISE :: Analysis
 -- | XF Analysis
 XF :: Analysis
 
+-- | Alter Statement
+ALTER :: Analysis
+
 -- | Get Spectre Version
 version :: IO String
 
@@ -71,7 +74,7 @@ stopSession :: Session -> IO ()
 runAll :: Session -> IO NutMeg
 
 -- | Get Map of Available Simulation Analyses: (id, type)
-listAnalysis :: Session -> IO (Map String Analysis)
+listAnalysis :: Session -> IO [(String, Analysis)]
 
 -- | Run Selected Analysis only
 runAnalysis :: Session -> String -> IO NutMeg
