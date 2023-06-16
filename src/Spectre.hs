@@ -18,6 +18,7 @@ data Analysis = AC      -- ^ AC Analysis
               | TRAN    -- ^ Transient Analysis
               | NOISE   -- ^ Noise Analysis
               | XF      -- ^ XF Analysis
+              | ALTER   -- ^ Alter Statement
               deriving (Eq)
 
 -- | Show instance for analyses are lowercase
@@ -29,6 +30,7 @@ instance Show Analysis where
   show TRAN    = "tran"
   show NOISE   = "noise"
   show XF      = "xf"
+  show ALTER   = "alter"
 
 -- | Read instance for analyses handle lowercase
 instance Read Analysis where
@@ -39,6 +41,7 @@ instance Read Analysis where
   readsPrec _ "tran"    = [(TRAN, "")]
   readsPrec _ "noise"   = [(NOISE, "")]
   readsPrec _ "xf"      = [(XF, "")]
+  readsPrec _ "alter"   = [(ALTER, "")]
   readsPrec _ _         = undefined
 
 -- | Get Spectre Version

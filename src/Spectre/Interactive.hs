@@ -166,14 +166,13 @@ runAll :: Session -> IO NutMeg
 runAll session = exec_ session RunAll >> results session
 
 -- | Get Map of Available Simulation Analyses: (id, type)
-listAnalysis :: Session -> IO (M.Map String Analysis)
-listAnalysis session = M.map read . M.fromList . filter ((/= "alter") . snd) 
-                     . map (asTuple . map CS.unpack . CS.words) . CS.lines 
-                    <$> exec session ListAnalysis
+listAnalysis :: Session -> IO [(String, Analysis)]
+listAnalysis session = map (snd' read . asTuple . map CS.unpack . CS.words)
+                     . CS.lines <$> exec session ListAnalysis
   where
+    snd' f (a,b) = (a, f b)
     asTuple :: [a] -> (a,a)
     asTuple [a,b] = (a,b)
-    asTuple []    = error "Parser Error"
     asTuple _     = error "Parser Error"
 
 -- | Run Selected Analysis only
