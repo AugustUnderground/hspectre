@@ -37,12 +37,12 @@ import           Text.RawString.QQ
 import           Text.Regex.TDFA
 
 -- | Spectre Commands
-data Command = Close                      -- Quit the Session
-             | RunAll                     -- Run all simulation analyses
-             | ListAnalysis               -- Retrieve Analyses in netlist
-             | RunAnalysis Analysis       -- Run specified analysis
-             | SetAttribute String Double -- Alter a Parameter
-             | GetAttribute String        -- Get Parameter Value
+data Command = Close                        -- Quit the Session
+             | RunAll                       -- Run all simulation analyses
+             | ListAnalysis                 -- Retrieve Analyses in netlist
+             | RunAnalysis  !String         -- Run specified analysis
+             | SetAttribute !String !Double -- Alter a Parameter
+             | GetAttribute !String         -- Get Parameter Value
 
 -- | Spectre Interactive Session
 data Session = Session { pty :: Pty      -- The Terminal
@@ -177,9 +177,9 @@ listAnalysis session = M.map read . M.fromList . filter ((/= "alter") . snd)
     asTuple _     = error "Parser Error"
 
 -- | Run Selected Analysis only
-runAnalysis :: Session -> Analysis -> IO NutMeg
-runAnalysis session analysis = exec_ session (RunAnalysis analysis) 
-                                    >> results session
+runAnalysis :: Session -> String -> IO NutMeg
+runAnalysis session analysisID = exec_ session (RunAnalysis analysisID) 
+                                        >> results session
 
 -- | Get Netlist Parameter
 getParameter :: Session -> Parameter -> IO Double

@@ -74,7 +74,7 @@ runAll :: Session -> IO NutMeg
 listAnalysis :: Session -> IO (Map String Analysis)
 
 -- | Run Selected Analysis only
-runAnalysis :: Session -> Analysis -> IO NutMeg
+runAnalysis :: Session -> String -> IO NutMeg
 
 -- | Get Netlist Parameter
 getParameter :: Session -> Parameter -> IO Double
