@@ -1,6 +1,6 @@
 {-# OPTIONS_GHC -Wall #-}
 
--- | Communication Between Haskell and Spectre
+-- | Communication between Haskell and Spectre
 module Spectre ( Analysis (..)
                , version
                , simulate
@@ -59,7 +59,8 @@ simulate includes netlist = do
     let args = [ "-64", "-format nutbin", "-raw " ++ raw', "=log " ++ log' 
                ] ++ incs ++ [netlist]
     command_ [] spectre args
-    parseNutMeg <$> readNutRaw raw'
+    readNutRaw' raw'
+    -- parseNutMeg <$> readNutRaw raw'
   where
     spectre = "spectre"
     incs    = map ("-I"++) includes

@@ -6,15 +6,18 @@
 {-# LANGUAGE RecordWildCards #-}
 {-# LANGUAGE OverloadedStrings #-}
 
--- | Communication Between Haskell and Spectre
+-- | Interactive Communication between Haskell and Spectre
 module Spectre.Interactive ( Session (..)
                            , Parameter
+                           -- * Session Management
                            , startSession
                            , startSession'
                            , stopSession
+                           -- * Running Simulations
                            , runAll
                            , listAnalysis
                            , runAnalysis
+                           -- * Netlist Parameters
                            , getParameter
                            , setParameter
                            , getParameters
@@ -37,16 +40,16 @@ import           Text.RawString.QQ
 import           Text.Regex.TDFA
 
 -- | Spectre Commands
-data Command = Close                        -- Quit the Session
-             | RunAll                       -- Run all simulation analyses
-             | ListAnalysis                 -- Retrieve Analyses in netlist
-             | RunAnalysis  !String         -- Run specified analysis
-             | SetAttribute !String !Double -- Alter a Parameter
-             | GetAttribute !String         -- Get Parameter Value
+data Command = Close                        -- ^ Quit the Session
+             | RunAll                       -- ^ Run all simulation analyses
+             | ListAnalysis                 -- ^ Retrieve Analyses in netlist
+             | RunAnalysis  !String         -- ^ Run specified analysis
+             | SetAttribute !String !Double -- ^ Alter a Parameter
+             | GetAttribute !String         -- ^ Get Parameter Value
 
 -- | Spectre Interactive Session
-data Session = Session { pty :: Pty      -- The Terminal
-                       , dir :: FilePath -- Temp Dir
+data Session = Session { pty :: !Pty      --  ^ The Terminal
+                       , dir :: !FilePath --  ^ Temp Dir
                        }
 
 -- | Name of a netlist Parameter
@@ -68,15 +71,6 @@ consumeOutput pty' = do
 discardOutput :: Pty -> IO ()
 discardOutput pty' = consumeOutput pty' >> pure ()
 
--- | Write offset to file
-writeOffset :: Session -> Int -> IO ()
-writeOffset Session{..} offset = BS.writeFile (dir ++ "/offset") . CS.pack
-                               $ show offset
-
--- | Read offset
-readOffset :: Session -> IO Int
-readOffset Session{..} = read . CS.unpack <$> BS.readFile (dir ++ "/offset")
-
 -- | Initialize spectre session with given include path and netlist
 startSession' :: [FilePath] -> FilePath -> IO Session
 startSession' includes netlist = createTempDirectory "/tmp" "hspectre" 
@@ -95,7 +89,7 @@ startSession inc net dir' = do
     _ <- spawnCommand $! "cat "    ++ log' ++ " > /dev/null &"
 
     let session = Session pty' dir'
-    writeOffset session 0
+    -- writeOffset session 0
 
     _ <- threadWaitReadPty pty' >> consumeOutput pty'
 
@@ -155,11 +149,7 @@ exec _ _                              = pure prompt
 
 -- | Simulation Results
 results :: Session -> IO NutMeg
-results s@Session{..} = do
-    off' <- readOffset s
-    (nut, off) <- parseNutMeg' off' <$> readNutRaw (dir ++ "/hspectre.raw")
-    writeOffset s off
-    pure nut
+results Session{..} = readNutRaw' (dir ++ "/hspectre.raw")
 
 -- | Run all simulation analyses
 runAll :: Session -> IO NutMeg

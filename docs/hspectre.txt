@@ -5,10 +5,10 @@
 -- | Please see the README on GitHub at
 --   <a>https://github.com/augustunderground/hspectre#readme</a>
 @package hspectre
-@version 0.1.0.0
+@version 0.2.0.0
 
 
--- | Communication Between Haskell and Spectre
+-- | Communication between Haskell and Spectre
 module Spectre
 
 -- | Available Simulation Analyses
@@ -48,14 +48,14 @@ instance GHC.Show.Show Spectre.Analysis
 instance GHC.Read.Read Spectre.Analysis
 
 
--- | Communication Between Haskell and Spectre
+-- | Interactive Communication between Haskell and Spectre
 module Spectre.Interactive
 
 -- | Spectre Interactive Session
 data Session
-Session :: Pty -> FilePath -> Session
-[pty] :: Session -> Pty
-[dir] :: Session -> FilePath
+Session :: !Pty -> !FilePath -> Session
+[pty] :: Session -> !Pty
+[dir] :: Session -> !FilePath
 
 -- | Name of a netlist Parameter
 type Parameter = String
