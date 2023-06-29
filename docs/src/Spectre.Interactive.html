@@ -66,39 +66,39 @@
 </span><span id="line-62"></span><span class="hs-comment">-- | Consume all output from Pty</span><span>
 </span><span id="line-63"></span><span class="annot"><a href="Spectre.Interactive.html#consumeOutput"><span class="hs-identifier hs-type">consumeOutput</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Pty</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">BS.ByteString</span></span><span>
 </span><span id="line-64"></span><span id="consumeOutput"><span class="annot"><span class="annottext">consumeOutput :: Pty -&gt; IO ByteString
-</span><a href="Spectre.Interactive.html#consumeOutput"><span class="hs-identifier hs-var hs-var">consumeOutput</span></a></span></span><span> </span><span id="local-6989586621679074387"><span class="annot"><span class="annottext">Pty
-</span><a href="#local-6989586621679074387"><span class="hs-identifier hs-var">pty'</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-65"></span><span>    </span><span id="local-6989586621679074386"><span class="annot"><span class="annottext">ByteString
-</span><a href="#local-6989586621679074386"><span class="hs-identifier hs-var">output</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Pty -&gt; IO ()
+</span><a href="Spectre.Interactive.html#consumeOutput"><span class="hs-identifier hs-var hs-var">consumeOutput</span></a></span></span><span> </span><span id="local-6989586621679074385"><span class="annot"><span class="annottext">Pty
+</span><a href="#local-6989586621679074385"><span class="hs-identifier hs-var">pty'</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-65"></span><span>    </span><span id="local-6989586621679074384"><span class="annot"><span class="annottext">ByteString
+</span><a href="#local-6989586621679074384"><span class="hs-identifier hs-var">output</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Pty -&gt; IO ()
 </span><span class="hs-identifier hs-var">drainOutput</span></span><span> </span><span class="annot"><span class="annottext">Pty
-</span><a href="#local-6989586621679074387"><span class="hs-identifier hs-var">pty'</span></a></span><span> </span><span class="annot"><span class="annottext">IO () -&gt; IO ByteString -&gt; IO ByteString
+</span><a href="#local-6989586621679074385"><span class="hs-identifier hs-var">pty'</span></a></span><span> </span><span class="annot"><span class="annottext">IO () -&gt; IO ByteString -&gt; IO ByteString
 forall (m :: * -&gt; *) a b. Monad m =&gt; m a -&gt; m b -&gt; m b
 </span><span class="hs-operator hs-var">&gt;&gt;</span></span><span> </span><span class="annot"><span class="annottext">Pty -&gt; IO ByteString
 </span><span class="hs-identifier hs-var">readPty</span></span><span> </span><span class="annot"><span class="annottext">Pty
-</span><a href="#local-6989586621679074387"><span class="hs-identifier hs-var">pty'</span></a></span><span>
+</span><a href="#local-6989586621679074385"><span class="hs-identifier hs-var">pty'</span></a></span><span>
 </span><span id="line-66"></span><span>    </span><span class="hs-keyword">if</span><span> </span><span class="annot"><span class="annottext">ByteString -&gt; ByteString -&gt; Bool
 </span><span class="hs-identifier hs-var">BS.isSuffixOf</span></span><span> </span><span class="annot"><span class="annottext">ByteString
 </span><a href="Spectre.Interactive.html#prompt"><span class="hs-identifier hs-var">prompt</span></a></span><span> </span><span class="annot"><span class="annottext">ByteString
-</span><a href="#local-6989586621679074386"><span class="hs-identifier hs-var">output</span></a></span><span> </span><span>
+</span><a href="#local-6989586621679074384"><span class="hs-identifier hs-var">output</span></a></span><span> </span><span>
 </span><span id="line-67"></span><span>       </span><span class="hs-keyword">then</span><span> </span><span class="annot"><span class="annottext">ByteString -&gt; IO ByteString
 forall (f :: * -&gt; *) a. Applicative f =&gt; a -&gt; f a
 </span><span class="hs-identifier hs-var">pure</span></span><span> </span><span class="annot"><span class="annottext">ByteString
-</span><a href="#local-6989586621679074386"><span class="hs-identifier hs-var">output</span></a></span><span> </span><span>
+</span><a href="#local-6989586621679074384"><span class="hs-identifier hs-var">output</span></a></span><span> </span><span>
 </span><span id="line-68"></span><span>       </span><span class="hs-keyword">else</span><span> </span><span class="annot"><span class="annottext">ByteString -&gt; ByteString -&gt; ByteString
 </span><span class="hs-identifier hs-var">BS.append</span></span><span> </span><span class="annot"><span class="annottext">ByteString
-</span><a href="#local-6989586621679074386"><span class="hs-identifier hs-var">output</span></a></span><span> </span><span class="annot"><span class="annottext">(ByteString -&gt; ByteString) -&gt; IO ByteString -&gt; IO ByteString
+</span><a href="#local-6989586621679074384"><span class="hs-identifier hs-var">output</span></a></span><span> </span><span class="annot"><span class="annottext">(ByteString -&gt; ByteString) -&gt; IO ByteString -&gt; IO ByteString
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="annot"><span class="annottext">Pty -&gt; IO ByteString
 </span><a href="Spectre.Interactive.html#consumeOutput"><span class="hs-identifier hs-var">consumeOutput</span></a></span><span> </span><span class="annot"><span class="annottext">Pty
-</span><a href="#local-6989586621679074387"><span class="hs-identifier hs-var">pty'</span></a></span><span>
+</span><a href="#local-6989586621679074385"><span class="hs-identifier hs-var">pty'</span></a></span><span>
 </span><span id="line-69"></span><span>
 </span><span id="line-70"></span><span class="hs-comment">-- | Discard output from session terminal</span><span>
 </span><span id="line-71"></span><span class="annot"><a href="Spectre.Interactive.html#discardOutput"><span class="hs-identifier hs-type">discardOutput</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Pty</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
 </span><span id="line-72"></span><span id="discardOutput"><span class="annot"><span class="annottext">discardOutput :: Pty -&gt; IO ()
-</span><a href="Spectre.Interactive.html#discardOutput"><span class="hs-identifier hs-var hs-var">discardOutput</span></a></span></span><span> </span><span id="local-6989586621679074379"><span class="annot"><span class="annottext">Pty
-</span><a href="#local-6989586621679074379"><span class="hs-identifier hs-var">pty'</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Pty -&gt; IO ByteString
+</span><a href="Spectre.Interactive.html#discardOutput"><span class="hs-identifier hs-var hs-var">discardOutput</span></a></span></span><span> </span><span id="local-6989586621679074377"><span class="annot"><span class="annottext">Pty
+</span><a href="#local-6989586621679074377"><span class="hs-identifier hs-var">pty'</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Pty -&gt; IO ByteString
 </span><a href="Spectre.Interactive.html#consumeOutput"><span class="hs-identifier hs-var">consumeOutput</span></a></span><span> </span><span class="annot"><span class="annottext">Pty
-</span><a href="#local-6989586621679074379"><span class="hs-identifier hs-var">pty'</span></a></span><span> </span><span class="annot"><span class="annottext">IO ByteString -&gt; IO () -&gt; IO ()
+</span><a href="#local-6989586621679074377"><span class="hs-identifier hs-var">pty'</span></a></span><span> </span><span class="annot"><span class="annottext">IO ByteString -&gt; IO () -&gt; IO ()
 forall (m :: * -&gt; *) a b. Monad m =&gt; m a -&gt; m b -&gt; m b
 </span><span class="hs-operator hs-var">&gt;&gt;</span></span><span> </span><span class="annot"><span class="annottext">() -&gt; IO ()
 forall (f :: * -&gt; *) a. Applicative f =&gt; a -&gt; f a
@@ -107,9 +107,9 @@ forall (f :: * -&gt; *) a. Applicative f =&gt; a -&gt; f a
 </span><span id="line-74"></span><span class="hs-comment">-- | Initialize spectre session with given include path and netlist</span><span>
 </span><span id="line-75"></span><span class="annot"><a href="Spectre.Interactive.html#startSession%27"><span class="hs-identifier hs-type">startSession'</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">FilePath</span></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">FilePath</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="annot"><a href="Spectre.Interactive.html#Session"><span class="hs-identifier hs-type">Session</span></a></span><span>
 </span><span id="line-76"></span><span id="startSession%27"><span class="annot"><span class="annottext">startSession' :: [FilePath] -&gt; FilePath -&gt; IO Session
-</span><a href="Spectre.Interactive.html#startSession%27"><span class="hs-identifier hs-var hs-var">startSession'</span></a></span></span><span> </span><span id="local-6989586621679074378"><span class="annot"><span class="annottext">[FilePath]
-</span><a href="#local-6989586621679074378"><span class="hs-identifier hs-var">includes</span></a></span></span><span> </span><span id="local-6989586621679074377"><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679074377"><span class="hs-identifier hs-var">netlist</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; FilePath -&gt; IO FilePath
+</span><a href="Spectre.Interactive.html#startSession%27"><span class="hs-identifier hs-var hs-var">startSession'</span></a></span></span><span> </span><span id="local-6989586621679074376"><span class="annot"><span class="annottext">[FilePath]
+</span><a href="#local-6989586621679074376"><span class="hs-identifier hs-var">includes</span></a></span></span><span> </span><span id="local-6989586621679074375"><span class="annot"><span class="annottext">FilePath
+</span><a href="#local-6989586621679074375"><span class="hs-identifier hs-var">netlist</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; FilePath -&gt; IO FilePath
 </span><span class="hs-identifier hs-var">createTempDirectory</span></span><span> </span><span class="annot"><span class="annottext">FilePath
 </span><span class="hs-string">&quot;/tmp&quot;</span></span><span> </span><span class="annot"><span class="annottext">FilePath
 </span><span class="hs-string">&quot;hspectre&quot;</span></span><span> </span><span>
@@ -117,20 +117,20 @@ forall (f :: * -&gt; *) a. Applicative f =&gt; a -&gt; f a
 forall (m :: * -&gt; *) a b. Monad m =&gt; m a -&gt; (a -&gt; m b) -&gt; m b
 </span><span class="hs-operator hs-var">&gt;&gt;=</span></span><span> </span><span class="annot"><span class="annottext">[FilePath] -&gt; FilePath -&gt; FilePath -&gt; IO Session
 </span><a href="Spectre.Interactive.html#startSession"><span class="hs-identifier hs-var">startSession</span></a></span><span> </span><span class="annot"><span class="annottext">[FilePath]
-</span><a href="#local-6989586621679074378"><span class="hs-identifier hs-var">includes</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679074377"><span class="hs-identifier hs-var">netlist</span></a></span><span>
+</span><a href="#local-6989586621679074376"><span class="hs-identifier hs-var">includes</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath
+</span><a href="#local-6989586621679074375"><span class="hs-identifier hs-var">netlist</span></a></span><span>
 </span><span id="line-78"></span><span>
 </span><span id="line-79"></span><span class="hs-comment">-- | Initialize spectre session with given include path, netlist and temp dir</span><span>
 </span><span id="line-80"></span><span class="annot"><a href="Spectre.Interactive.html#startSession"><span class="hs-identifier hs-type">startSession</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">FilePath</span></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">FilePath</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">FilePath</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="annot"><a href="Spectre.Interactive.html#Session"><span class="hs-identifier hs-type">Session</span></a></span><span>
 </span><span id="line-81"></span><span id="startSession"><span class="annot"><span class="annottext">startSession :: [FilePath] -&gt; FilePath -&gt; FilePath -&gt; IO Session
-</span><a href="Spectre.Interactive.html#startSession"><span class="hs-identifier hs-var hs-var">startSession</span></a></span></span><span> </span><span id="local-6989586621679074375"><span class="annot"><span class="annottext">[FilePath]
-</span><a href="#local-6989586621679074375"><span class="hs-identifier hs-var">inc</span></a></span></span><span> </span><span id="local-6989586621679074374"><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679074374"><span class="hs-identifier hs-var">net</span></a></span></span><span> </span><span id="local-6989586621679074373"><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679074373"><span class="hs-identifier hs-var">dir'</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><a href="Spectre.Interactive.html#startSession"><span class="hs-identifier hs-var hs-var">startSession</span></a></span></span><span> </span><span id="local-6989586621679074373"><span class="annot"><span class="annottext">[FilePath]
+</span><a href="#local-6989586621679074373"><span class="hs-identifier hs-var">inc</span></a></span></span><span> </span><span id="local-6989586621679074372"><span class="annot"><span class="annottext">FilePath
+</span><a href="#local-6989586621679074372"><span class="hs-identifier hs-var">net</span></a></span></span><span> </span><span id="local-6989586621679074371"><span class="annot"><span class="annottext">FilePath
+</span><a href="#local-6989586621679074371"><span class="hs-identifier hs-var">dir'</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-82"></span><span>    </span><span>
 </span><span id="line-83"></span><span>    </span><span class="annot"><span class="annottext">FilePath -&gt; IO Bool
 </span><span class="hs-identifier hs-var">doesFileExist</span></span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679074371"><span class="hs-identifier hs-var">log'</span></a></span><span> </span><span class="annot"><span class="annottext">IO Bool -&gt; (Bool -&gt; IO ()) -&gt; IO ()
+</span><a href="#local-6989586621679074369"><span class="hs-identifier hs-var">log'</span></a></span><span> </span><span class="annot"><span class="annottext">IO Bool -&gt; (Bool -&gt; IO ()) -&gt; IO ()
 forall (m :: * -&gt; *) a b. Monad m =&gt; m a -&gt; (a -&gt; m b) -&gt; m b
 </span><span class="hs-operator hs-var">&gt;&gt;=</span></span><span> </span><span class="annot"><span class="annottext">(Bool -&gt; IO () -&gt; IO ()) -&gt; IO () -&gt; Bool -&gt; IO ()
 forall a b c. (a -&gt; b -&gt; c) -&gt; b -&gt; a -&gt; c
@@ -138,12 +138,12 @@ forall a b c. (a -&gt; b -&gt; c) -&gt; b -&gt; a -&gt; c
 forall (f :: * -&gt; *). Applicative f =&gt; Bool -&gt; f () -&gt; f ()
 </span><span class="hs-identifier hs-var">when</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">FilePath -&gt; IO ()
 </span><span class="hs-identifier hs-var">removeFile</span></span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679074371"><span class="hs-identifier hs-var">log'</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621679074369"><span class="hs-identifier hs-var">log'</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-84"></span><span>
 </span><span id="line-85"></span><span>    </span><span class="annot"><span class="annottext">Bool -&gt; FilePath -&gt; IO ()
 </span><span class="hs-identifier hs-var">createDirectoryIfMissing</span></span><span> </span><span class="annot"><span class="annottext">Bool
 </span><span class="hs-identifier hs-var">True</span></span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679074373"><span class="hs-identifier hs-var">dir'</span></a></span><span>
+</span><a href="#local-6989586621679074371"><span class="hs-identifier hs-var">dir'</span></a></span><span>
 </span><span id="line-86"></span><span>
 </span><span id="line-87"></span><span>    </span><span class="annot"><span class="annottext">ProcessHandle
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; IO ProcessHandle
@@ -153,9 +153,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-string">&quot;mkfifo &quot;</span></span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; FilePath -&gt; FilePath
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679074371"><span class="hs-identifier hs-var">log'</span></a></span><span>
-</span><span id="line-88"></span><span>    </span><span id="local-6989586621679074365"><span class="annot"><span class="annottext">Pty
-</span><a href="#local-6989586621679074365"><span class="hs-identifier hs-var">pty'</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">(Pty, ProcessHandle) -&gt; Pty
+</span><a href="#local-6989586621679074369"><span class="hs-identifier hs-var">log'</span></a></span><span>
+</span><span id="line-88"></span><span>    </span><span id="local-6989586621679074363"><span class="annot"><span class="annottext">Pty
+</span><a href="#local-6989586621679074363"><span class="hs-identifier hs-var">pty'</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">(Pty, ProcessHandle) -&gt; Pty
 forall a b. (a, b) -&gt; a
 </span><span class="hs-identifier hs-var">fst</span></span><span> </span><span class="annot"><span class="annottext">((Pty, ProcessHandle) -&gt; Pty) -&gt; IO (Pty, ProcessHandle) -&gt; IO Pty
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
@@ -169,8 +169,8 @@ forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 forall a. Maybe a
 </span><span class="hs-identifier hs-var">Nothing</span></span><span> </span><span class="annot"><span class="annottext">Bool
 </span><span class="hs-identifier hs-var">True</span></span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679074363"><span class="hs-identifier hs-var">spectre</span></a></span><span> </span><span class="annot"><span class="annottext">[FilePath]
-</span><a href="#local-6989586621679074362"><span class="hs-identifier hs-var">args</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679074361"><span class="hs-identifier hs-var">spectre</span></a></span><span> </span><span class="annot"><span class="annottext">[FilePath]
+</span><a href="#local-6989586621679074360"><span class="hs-identifier hs-var">args</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">80</span></span><span class="hs-special">,</span><span class="annot"><span class="annottext">Int
 </span><span class="hs-number">100</span></span><span class="hs-special">)</span><span>
 </span><span id="line-89"></span><span>    </span><span class="annot"><span class="annottext">ProcessHandle
@@ -181,55 +181,55 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-string">&quot;cat &quot;</span></span><span>    </span><span class="annot"><span class="annottext">FilePath -&gt; FilePath -&gt; FilePath
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679074371"><span class="hs-identifier hs-var">log'</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; FilePath -&gt; FilePath
+</span><a href="#local-6989586621679074369"><span class="hs-identifier hs-var">log'</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; FilePath -&gt; FilePath
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">FilePath
 </span><span class="hs-string">&quot; &gt; /dev/null &amp;&quot;</span></span><span>
 </span><span id="line-90"></span><span>
-</span><span id="line-91"></span><span>    </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621679074361"><span class="annot"><span class="annottext">session :: Session
-</span><a href="#local-6989586621679074361"><span class="hs-identifier hs-var hs-var">session</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Pty -&gt; FilePath -&gt; Session
+</span><span id="line-91"></span><span>    </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621679074359"><span class="annot"><span class="annottext">session :: Session
+</span><a href="#local-6989586621679074359"><span class="hs-identifier hs-var hs-var">session</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Pty -&gt; FilePath -&gt; Session
 </span><a href="Spectre.Interactive.html#Session"><span class="hs-identifier hs-var">Session</span></a></span><span> </span><span class="annot"><span class="annottext">Pty
-</span><a href="#local-6989586621679074365"><span class="hs-identifier hs-var">pty'</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679074373"><span class="hs-identifier hs-var">dir'</span></a></span><span>
+</span><a href="#local-6989586621679074363"><span class="hs-identifier hs-var">pty'</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath
+</span><a href="#local-6989586621679074371"><span class="hs-identifier hs-var">dir'</span></a></span><span>
 </span><span id="line-92"></span><span>    </span><span class="hs-comment">-- writeOffset session 0</span><span>
 </span><span id="line-93"></span><span>
 </span><span id="line-94"></span><span>    </span><span class="annot"><span class="annottext">ByteString
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Pty -&gt; IO ()
 </span><span class="hs-identifier hs-var">threadWaitReadPty</span></span><span> </span><span class="annot"><span class="annottext">Pty
-</span><a href="#local-6989586621679074365"><span class="hs-identifier hs-var">pty'</span></a></span><span> </span><span class="annot"><span class="annottext">IO () -&gt; IO ByteString -&gt; IO ByteString
+</span><a href="#local-6989586621679074363"><span class="hs-identifier hs-var">pty'</span></a></span><span> </span><span class="annot"><span class="annottext">IO () -&gt; IO ByteString -&gt; IO ByteString
 forall (m :: * -&gt; *) a b. Monad m =&gt; m a -&gt; m b -&gt; m b
 </span><span class="hs-operator hs-var">&gt;&gt;</span></span><span> </span><span class="annot"><span class="annottext">Pty -&gt; IO ByteString
 </span><a href="Spectre.Interactive.html#consumeOutput"><span class="hs-identifier hs-var">consumeOutput</span></a></span><span> </span><span class="annot"><span class="annottext">Pty
-</span><a href="#local-6989586621679074365"><span class="hs-identifier hs-var">pty'</span></a></span><span>
+</span><a href="#local-6989586621679074363"><span class="hs-identifier hs-var">pty'</span></a></span><span>
 </span><span id="line-95"></span><span>
 </span><span id="line-96"></span><span>    </span><span class="annot"><span class="annottext">Session -&gt; IO Session
 forall (f :: * -&gt; *) a. Applicative f =&gt; a -&gt; f a
 </span><span class="hs-identifier hs-var">pure</span></span><span> </span><span class="annot"><span class="annottext">Session
-</span><a href="#local-6989586621679074361"><span class="hs-identifier hs-var">session</span></a></span><span>
+</span><a href="#local-6989586621679074359"><span class="hs-identifier hs-var">session</span></a></span><span>
 </span><span id="line-97"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-98"></span><span>    </span><span id="local-6989586621679074363"><span class="annot"><span class="annottext">spectre :: FilePath
-</span><a href="#local-6989586621679074363"><span class="hs-identifier hs-var hs-var">spectre</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">FilePath
+</span><span id="line-98"></span><span>    </span><span id="local-6989586621679074361"><span class="annot"><span class="annottext">spectre :: FilePath
+</span><a href="#local-6989586621679074361"><span class="hs-identifier hs-var hs-var">spectre</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">FilePath
 </span><span class="hs-string">&quot;spectre&quot;</span></span><span>
-</span><span id="line-99"></span><span>    </span><span id="local-6989586621679074359"><span class="annot"><span class="annottext">ahdl :: FilePath
-</span><a href="#local-6989586621679074359"><span class="hs-identifier hs-var hs-var">ahdl</span></a></span></span><span>    </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679074373"><span class="hs-identifier hs-var">dir'</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; FilePath -&gt; FilePath
+</span><span id="line-99"></span><span>    </span><span id="local-6989586621679074357"><span class="annot"><span class="annottext">ahdl :: FilePath
+</span><a href="#local-6989586621679074357"><span class="hs-identifier hs-var hs-var">ahdl</span></a></span></span><span>    </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">FilePath
+</span><a href="#local-6989586621679074371"><span class="hs-identifier hs-var">dir'</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; FilePath -&gt; FilePath
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">FilePath
 </span><span class="hs-string">&quot;/ahdl&quot;</span></span><span>
-</span><span id="line-100"></span><span>    </span><span id="local-6989586621679074358"><span class="annot"><span class="annottext">raw :: FilePath
-</span><a href="#local-6989586621679074358"><span class="hs-identifier hs-var hs-var">raw</span></a></span></span><span>     </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679074373"><span class="hs-identifier hs-var">dir'</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; FilePath -&gt; FilePath
+</span><span id="line-100"></span><span>    </span><span id="local-6989586621679074356"><span class="annot"><span class="annottext">raw :: FilePath
+</span><a href="#local-6989586621679074356"><span class="hs-identifier hs-var hs-var">raw</span></a></span></span><span>     </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">FilePath
+</span><a href="#local-6989586621679074371"><span class="hs-identifier hs-var">dir'</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; FilePath -&gt; FilePath
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">FilePath
 </span><span class="hs-string">&quot;/hspectre.raw&quot;</span></span><span>
-</span><span id="line-101"></span><span>    </span><span id="local-6989586621679074371"><span class="annot"><span class="annottext">log' :: FilePath
-</span><a href="#local-6989586621679074371"><span class="hs-identifier hs-var hs-var">log'</span></a></span></span><span>    </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679074373"><span class="hs-identifier hs-var">dir'</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; FilePath -&gt; FilePath
+</span><span id="line-101"></span><span>    </span><span id="local-6989586621679074369"><span class="annot"><span class="annottext">log' :: FilePath
+</span><a href="#local-6989586621679074369"><span class="hs-identifier hs-var hs-var">log'</span></a></span></span><span>    </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">FilePath
+</span><a href="#local-6989586621679074371"><span class="hs-identifier hs-var">dir'</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; FilePath -&gt; FilePath
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">FilePath
 </span><span class="hs-string">&quot;/hspectre.log&quot;</span></span><span>
-</span><span id="line-102"></span><span>    </span><span id="local-6989586621679074362"><span class="annot"><span class="annottext">args :: [FilePath]
-</span><a href="#local-6989586621679074362"><span class="hs-identifier hs-var hs-var">args</span></a></span></span><span>    </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">FilePath
+</span><span id="line-102"></span><span>    </span><span id="local-6989586621679074360"><span class="annot"><span class="annottext">args :: [FilePath]
+</span><a href="#local-6989586621679074360"><span class="hs-identifier hs-var hs-var">args</span></a></span></span><span>    </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">FilePath
 </span><span class="hs-string">&quot;-64&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">FilePath
 </span><span class="hs-string">&quot;+interactive&quot;</span></span><span>
 </span><span id="line-103"></span><span>              </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">FilePath
@@ -238,19 +238,19 @@ forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-string">&quot;-ahdllibdir &quot;</span></span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; FilePath -&gt; FilePath
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679074359"><span class="hs-identifier hs-var">ahdl</span></a></span><span>
+</span><a href="#local-6989586621679074357"><span class="hs-identifier hs-var">ahdl</span></a></span><span>
 </span><span id="line-105"></span><span>              </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">FilePath
 </span><span class="hs-string">&quot;+multithread&quot;</span></span><span>
 </span><span id="line-106"></span><span>              </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">FilePath
 </span><span class="hs-string">&quot;=log &quot;</span></span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; FilePath -&gt; FilePath
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679074371"><span class="hs-identifier hs-var">log'</span></a></span><span>
+</span><a href="#local-6989586621679074369"><span class="hs-identifier hs-var">log'</span></a></span><span>
 </span><span id="line-107"></span><span>              </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">FilePath
 </span><span class="hs-string">&quot;-raw &quot;</span></span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; FilePath -&gt; FilePath
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679074358"><span class="hs-identifier hs-var">raw</span></a></span><span>
+</span><a href="#local-6989586621679074356"><span class="hs-identifier hs-var">raw</span></a></span><span>
 </span><span id="line-108"></span><span>              </span><span class="hs-special">]</span><span> </span><span class="annot"><span class="annottext">[FilePath] -&gt; [FilePath] -&gt; [FilePath]
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">(FilePath -&gt; FilePath) -&gt; [FilePath] -&gt; [FilePath]
@@ -259,74 +259,74 @@ forall a b. (a -&gt; b) -&gt; [a] -&gt; [b]
 </span><span class="hs-string">&quot;-I&quot;</span></span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; FilePath -&gt; FilePath
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[FilePath]
-</span><a href="#local-6989586621679074375"><span class="hs-identifier hs-var">inc</span></a></span><span> </span><span class="annot"><span class="annottext">[FilePath] -&gt; [FilePath] -&gt; [FilePath]
+</span><a href="#local-6989586621679074373"><span class="hs-identifier hs-var">inc</span></a></span><span> </span><span class="annot"><span class="annottext">[FilePath] -&gt; [FilePath] -&gt; [FilePath]
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679074374"><span class="hs-identifier hs-var">net</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679074372"><span class="hs-identifier hs-var">net</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-109"></span><span>
 </span><span id="line-110"></span><span class="hs-comment">-- | Execute a spectre Command which changes the state but returns nothing</span><span>
 </span><span id="line-111"></span><span class="annot"><a href="Spectre.Interactive.html#exec_"><span class="hs-identifier hs-type">exec_</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Spectre.Interactive.html#Session"><span class="hs-identifier hs-type">Session</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Spectre.Interactive.html#Command"><span class="hs-identifier hs-type">Command</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
 </span><span id="line-112"></span><span id="exec_"><span class="annot"><span class="annottext">exec_ :: Session -&gt; Command -&gt; IO ()
-</span><a href="Spectre.Interactive.html#exec_"><span class="hs-identifier hs-var hs-var">exec_</span></a></span></span><span> </span><span class="annot"><a href="Spectre.Interactive.html#Session"><span class="hs-identifier hs-type">Session</span></a></span><span class="hs-special">{</span><span id="local-6989586621679074355"><span id="local-6989586621679074356"><span class="annot"><span class="annottext">FilePath
+</span><a href="Spectre.Interactive.html#exec_"><span class="hs-identifier hs-var hs-var">exec_</span></a></span></span><span> </span><span class="annot"><a href="Spectre.Interactive.html#Session"><span class="hs-identifier hs-type">Session</span></a></span><span class="hs-special">{</span><span id="local-6989586621679074353"><span id="local-6989586621679074354"><span class="annot"><span class="annottext">FilePath
 Pty
 dir :: FilePath
 pty :: Pty
 dir :: Session -&gt; FilePath
 pty :: Session -&gt; Pty
-</span><a href="#local-6989586621679074355"><span class="hs-glyph hs-var hs-var hs-var hs-var">..</span></a></span></span></span><span class="hs-special">}</span><span> </span><span class="annot"><span class="annottext">Command
+</span><a href="#local-6989586621679074353"><span class="hs-glyph hs-var hs-var hs-var hs-var">..</span></a></span></span></span><span class="hs-special">}</span><span> </span><span class="annot"><span class="annottext">Command
 </span><a href="Spectre.Interactive.html#Close"><span class="hs-identifier hs-var">Close</span></a></span><span>                      </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Pty -&gt; ByteString -&gt; IO ()
 </span><span class="hs-identifier hs-var">writePty</span></span><span> </span><span class="annot"><span class="annottext">Pty
-</span><a href="#local-6989586621679074356"><span class="hs-identifier hs-var">pty</span></a></span><span> </span><span class="annot"><span class="annottext">ByteString
-</span><a href="#local-6989586621679074353"><span class="hs-identifier hs-var">cmd</span></a></span><span> </span><span class="annot"><span class="annottext">IO () -&gt; IO ByteString -&gt; IO ByteString
+</span><a href="#local-6989586621679074354"><span class="hs-identifier hs-var">pty</span></a></span><span> </span><span class="annot"><span class="annottext">ByteString
+</span><a href="#local-6989586621679074351"><span class="hs-identifier hs-var">cmd</span></a></span><span> </span><span class="annot"><span class="annottext">IO () -&gt; IO ByteString -&gt; IO ByteString
 forall (m :: * -&gt; *) a b. Monad m =&gt; m a -&gt; m b -&gt; m b
 </span><span class="hs-operator hs-var">&gt;&gt;</span></span><span> </span><span class="annot"><span class="annottext">Pty -&gt; IO ByteString
 </span><span class="hs-identifier hs-var">readPty</span></span><span> </span><span class="annot"><span class="annottext">Pty
-</span><a href="#local-6989586621679074356"><span class="hs-identifier hs-var">pty</span></a></span><span> </span><span class="annot"><span class="annottext">IO ByteString -&gt; IO () -&gt; IO ()
+</span><a href="#local-6989586621679074354"><span class="hs-identifier hs-var">pty</span></a></span><span> </span><span class="annot"><span class="annottext">IO ByteString -&gt; IO () -&gt; IO ()
 forall (m :: * -&gt; *) a b. Monad m =&gt; m a -&gt; m b -&gt; m b
 </span><span class="hs-operator hs-var">&gt;&gt;</span></span><span> </span><span class="annot"><span class="annottext">() -&gt; IO ()
 forall (f :: * -&gt; *) a. Applicative f =&gt; a -&gt; f a
 </span><span class="hs-identifier hs-var">pure</span></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
 </span><span id="line-113"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-114"></span><span>    </span><span id="local-6989586621679074353"><span class="annot"><span class="annottext">cmd :: ByteString
-</span><a href="#local-6989586621679074353"><span class="hs-identifier hs-var hs-var">cmd</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">ByteString
+</span><span id="line-114"></span><span>    </span><span id="local-6989586621679074351"><span class="annot"><span class="annottext">cmd :: ByteString
+</span><a href="#local-6989586621679074351"><span class="hs-identifier hs-var hs-var">cmd</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">ByteString
 </span><span class="hs-string">&quot;(sclQuit)\n&quot;</span></span><span>
-</span><span id="line-115"></span><span class="annot"><a href="Spectre.Interactive.html#exec_"><span class="hs-identifier hs-var">exec_</span></a></span><span> </span><span class="annot"><a href="Spectre.Interactive.html#Session"><span class="hs-identifier hs-type">Session</span></a></span><span class="hs-special">{</span><span id="local-6989586621679074351"><span id="local-6989586621679074352"><span class="annot"><span class="annottext">FilePath
+</span><span id="line-115"></span><span class="annot"><a href="Spectre.Interactive.html#exec_"><span class="hs-identifier hs-var">exec_</span></a></span><span> </span><span class="annot"><a href="Spectre.Interactive.html#Session"><span class="hs-identifier hs-type">Session</span></a></span><span class="hs-special">{</span><span id="local-6989586621679074349"><span id="local-6989586621679074350"><span class="annot"><span class="annottext">FilePath
 Pty
 dir :: FilePath
 pty :: Pty
 dir :: Session -&gt; FilePath
 pty :: Session -&gt; Pty
-</span><a href="#local-6989586621679074351"><span class="hs-glyph hs-var hs-var hs-var hs-var">..</span></a></span></span></span><span class="hs-special">}</span><span> </span><span class="annot"><span class="annottext">Command
+</span><a href="#local-6989586621679074349"><span class="hs-glyph hs-var hs-var hs-var hs-var">..</span></a></span></span></span><span class="hs-special">}</span><span> </span><span class="annot"><span class="annottext">Command
 </span><a href="Spectre.Interactive.html#RunAll"><span class="hs-identifier hs-var">RunAll</span></a></span><span>                     </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Pty -&gt; ByteString -&gt; IO ()
 </span><span class="hs-identifier hs-var">writePty</span></span><span> </span><span class="annot"><span class="annottext">Pty
-</span><a href="#local-6989586621679074352"><span class="hs-identifier hs-var">pty</span></a></span><span> </span><span class="annot"><span class="annottext">ByteString
-</span><a href="#local-6989586621679074350"><span class="hs-identifier hs-var">cmd</span></a></span><span> </span><span class="annot"><span class="annottext">IO () -&gt; IO () -&gt; IO ()
+</span><a href="#local-6989586621679074350"><span class="hs-identifier hs-var">pty</span></a></span><span> </span><span class="annot"><span class="annottext">ByteString
+</span><a href="#local-6989586621679074348"><span class="hs-identifier hs-var">cmd</span></a></span><span> </span><span class="annot"><span class="annottext">IO () -&gt; IO () -&gt; IO ()
 forall (m :: * -&gt; *) a b. Monad m =&gt; m a -&gt; m b -&gt; m b
 </span><span class="hs-operator hs-var">&gt;&gt;</span></span><span> </span><span class="annot"><span class="annottext">Pty -&gt; IO ()
 </span><a href="Spectre.Interactive.html#discardOutput"><span class="hs-identifier hs-var">discardOutput</span></a></span><span> </span><span class="annot"><span class="annottext">Pty
-</span><a href="#local-6989586621679074352"><span class="hs-identifier hs-var">pty</span></a></span><span>
+</span><a href="#local-6989586621679074350"><span class="hs-identifier hs-var">pty</span></a></span><span>
 </span><span id="line-116"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-117"></span><span>    </span><span id="local-6989586621679074350"><span class="annot"><span class="annottext">cmd :: ByteString
-</span><a href="#local-6989586621679074350"><span class="hs-identifier hs-var hs-var">cmd</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">ByteString
+</span><span id="line-117"></span><span>    </span><span id="local-6989586621679074348"><span class="annot"><span class="annottext">cmd :: ByteString
+</span><a href="#local-6989586621679074348"><span class="hs-identifier hs-var hs-var">cmd</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">ByteString
 </span><span class="hs-string">&quot;(sclRun \&quot;all\&quot;)\n&quot;</span></span><span>
-</span><span id="line-118"></span><span class="annot"><a href="Spectre.Interactive.html#exec_"><span class="hs-identifier hs-var">exec_</span></a></span><span> </span><span class="annot"><a href="Spectre.Interactive.html#Session"><span class="hs-identifier hs-type">Session</span></a></span><span class="hs-special">{</span><span id="local-6989586621679074348"><span id="local-6989586621679074349"><span class="annot"><span class="annottext">FilePath
+</span><span id="line-118"></span><span class="annot"><a href="Spectre.Interactive.html#exec_"><span class="hs-identifier hs-var">exec_</span></a></span><span> </span><span class="annot"><a href="Spectre.Interactive.html#Session"><span class="hs-identifier hs-type">Session</span></a></span><span class="hs-special">{</span><span id="local-6989586621679074346"><span id="local-6989586621679074347"><span class="annot"><span class="annottext">FilePath
 Pty
 dir :: FilePath
 pty :: Pty
 dir :: Session -&gt; FilePath
 pty :: Session -&gt; Pty
-</span><a href="#local-6989586621679074348"><span class="hs-glyph hs-var hs-var hs-var hs-var">..</span></a></span></span></span><span class="hs-special">}</span><span> </span><span class="hs-special">(</span><span class="annot"><a href="Spectre.Interactive.html#RunAnalysis"><span class="hs-identifier hs-type">RunAnalysis</span></a></span><span> </span><span id="local-6989586621679074347"><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679074347"><span class="hs-identifier hs-var">analysis</span></a></span></span><span class="hs-special">)</span><span>     </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Pty -&gt; ByteString -&gt; IO ()
+</span><a href="#local-6989586621679074346"><span class="hs-glyph hs-var hs-var hs-var hs-var">..</span></a></span></span></span><span class="hs-special">}</span><span> </span><span class="hs-special">(</span><span class="annot"><a href="Spectre.Interactive.html#RunAnalysis"><span class="hs-identifier hs-type">RunAnalysis</span></a></span><span> </span><span id="local-6989586621679074345"><span class="annot"><span class="annottext">FilePath
+</span><a href="#local-6989586621679074345"><span class="hs-identifier hs-var">analysis</span></a></span></span><span class="hs-special">)</span><span>     </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Pty -&gt; ByteString -&gt; IO ()
 </span><span class="hs-identifier hs-var">writePty</span></span><span> </span><span class="annot"><span class="annottext">Pty
-</span><a href="#local-6989586621679074349"><span class="hs-identifier hs-var">pty</span></a></span><span> </span><span class="annot"><span class="annottext">ByteString
-</span><a href="#local-6989586621679074346"><span class="hs-identifier hs-var">cmd</span></a></span><span> </span><span class="annot"><span class="annottext">IO () -&gt; IO () -&gt; IO ()
+</span><a href="#local-6989586621679074347"><span class="hs-identifier hs-var">pty</span></a></span><span> </span><span class="annot"><span class="annottext">ByteString
+</span><a href="#local-6989586621679074344"><span class="hs-identifier hs-var">cmd</span></a></span><span> </span><span class="annot"><span class="annottext">IO () -&gt; IO () -&gt; IO ()
 forall (m :: * -&gt; *) a b. Monad m =&gt; m a -&gt; m b -&gt; m b
 </span><span class="hs-operator hs-var">&gt;&gt;</span></span><span> </span><span class="annot"><span class="annottext">Pty -&gt; IO ()
 </span><a href="Spectre.Interactive.html#discardOutput"><span class="hs-identifier hs-var">discardOutput</span></a></span><span> </span><span class="annot"><span class="annottext">Pty
-</span><a href="#local-6989586621679074349"><span class="hs-identifier hs-var">pty</span></a></span><span>
+</span><a href="#local-6989586621679074347"><span class="hs-identifier hs-var">pty</span></a></span><span>
 </span><span id="line-119"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-120"></span><span>    </span><span id="local-6989586621679074346"><span class="annot"><span class="annottext">cmd :: ByteString
-</span><a href="#local-6989586621679074346"><span class="hs-identifier hs-var hs-var">cmd</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; ByteString
+</span><span id="line-120"></span><span>    </span><span id="local-6989586621679074344"><span class="annot"><span class="annottext">cmd :: ByteString
+</span><a href="#local-6989586621679074344"><span class="hs-identifier hs-var hs-var">cmd</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; ByteString
 </span><span class="hs-identifier hs-var">CS.pack</span></span><span> </span><span class="annot"><span class="annottext">(FilePath -&gt; ByteString) -&gt; FilePath -&gt; ByteString
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">FilePath
@@ -339,29 +339,29 @@ forall a b. (a -&gt; b) -&gt; [a] -&gt; [b]
 </span><span class="hs-identifier hs-var">toLower</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">FilePath -&gt; FilePath
 forall a. Show a =&gt; a -&gt; FilePath
 </span><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679074347"><span class="hs-identifier hs-var">analysis</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; FilePath -&gt; FilePath
+</span><a href="#local-6989586621679074345"><span class="hs-identifier hs-var">analysis</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; FilePath -&gt; FilePath
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">FilePath
 </span><span class="hs-string">&quot;\&quot;))\n&quot;</span></span><span>
-</span><span id="line-122"></span><span class="annot"><a href="Spectre.Interactive.html#exec_"><span class="hs-identifier hs-var">exec_</span></a></span><span> </span><span class="annot"><a href="Spectre.Interactive.html#Session"><span class="hs-identifier hs-type">Session</span></a></span><span class="hs-special">{</span><span id="local-6989586621679074341"><span id="local-6989586621679074342"><span class="annot"><span class="annottext">FilePath
+</span><span id="line-122"></span><span class="annot"><a href="Spectre.Interactive.html#exec_"><span class="hs-identifier hs-var">exec_</span></a></span><span> </span><span class="annot"><a href="Spectre.Interactive.html#Session"><span class="hs-identifier hs-type">Session</span></a></span><span class="hs-special">{</span><span id="local-6989586621679074339"><span id="local-6989586621679074340"><span class="annot"><span class="annottext">FilePath
 Pty
 dir :: FilePath
 pty :: Pty
 dir :: Session -&gt; FilePath
 pty :: Session -&gt; Pty
-</span><a href="#local-6989586621679074341"><span class="hs-glyph hs-var hs-var hs-var hs-var">..</span></a></span></span></span><span class="hs-special">}</span><span> </span><span class="hs-special">(</span><span class="annot"><a href="Spectre.Interactive.html#SetAttribute"><span class="hs-identifier hs-type">SetAttribute</span></a></span><span> </span><span id="local-6989586621679074340"><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679074340"><span class="hs-identifier hs-var">param</span></a></span></span><span> </span><span id="local-6989586621679074339"><span class="annot"><span class="annottext">Double
-</span><a href="#local-6989586621679074339"><span class="hs-identifier hs-var">value</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Pty -&gt; ByteString -&gt; IO ()
+</span><a href="#local-6989586621679074339"><span class="hs-glyph hs-var hs-var hs-var hs-var">..</span></a></span></span></span><span class="hs-special">}</span><span> </span><span class="hs-special">(</span><span class="annot"><a href="Spectre.Interactive.html#SetAttribute"><span class="hs-identifier hs-type">SetAttribute</span></a></span><span> </span><span id="local-6989586621679074338"><span class="annot"><span class="annottext">FilePath
+</span><a href="#local-6989586621679074338"><span class="hs-identifier hs-var">param</span></a></span></span><span> </span><span id="local-6989586621679074337"><span class="annot"><span class="annottext">Double
+</span><a href="#local-6989586621679074337"><span class="hs-identifier hs-var">value</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Pty -&gt; ByteString -&gt; IO ()
 </span><span class="hs-identifier hs-var">writePty</span></span><span> </span><span class="annot"><span class="annottext">Pty
-</span><a href="#local-6989586621679074342"><span class="hs-identifier hs-var">pty</span></a></span><span> </span><span class="annot"><span class="annottext">ByteString
-</span><a href="#local-6989586621679074338"><span class="hs-identifier hs-var">cmd</span></a></span><span> </span><span class="annot"><span class="annottext">IO () -&gt; IO () -&gt; IO ()
+</span><a href="#local-6989586621679074340"><span class="hs-identifier hs-var">pty</span></a></span><span> </span><span class="annot"><span class="annottext">ByteString
+</span><a href="#local-6989586621679074336"><span class="hs-identifier hs-var">cmd</span></a></span><span> </span><span class="annot"><span class="annottext">IO () -&gt; IO () -&gt; IO ()
 forall (m :: * -&gt; *) a b. Monad m =&gt; m a -&gt; m b -&gt; m b
 </span><span class="hs-operator hs-var">&gt;&gt;</span></span><span> </span><span class="annot"><span class="annottext">Pty -&gt; IO ()
 </span><a href="Spectre.Interactive.html#discardOutput"><span class="hs-identifier hs-var">discardOutput</span></a></span><span> </span><span class="annot"><span class="annottext">Pty
-</span><a href="#local-6989586621679074342"><span class="hs-identifier hs-var">pty</span></a></span><span>
+</span><a href="#local-6989586621679074340"><span class="hs-identifier hs-var">pty</span></a></span><span>
 </span><span id="line-123"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-124"></span><span>    </span><span id="local-6989586621679074338"><span class="annot"><span class="annottext">cmd :: ByteString
-</span><a href="#local-6989586621679074338"><span class="hs-identifier hs-var hs-var">cmd</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; ByteString
+</span><span id="line-124"></span><span>    </span><span id="local-6989586621679074336"><span class="annot"><span class="annottext">cmd :: ByteString
+</span><a href="#local-6989586621679074336"><span class="hs-identifier hs-var hs-var">cmd</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; ByteString
 </span><span class="hs-identifier hs-var">CS.pack</span></span><span> </span><span>
 </span><span id="line-125"></span><span>        </span><span class="annot"><span class="annottext">(FilePath -&gt; ByteString) -&gt; FilePath -&gt; ByteString
 forall a b. (a -&gt; b) -&gt; a -&gt; b
@@ -370,7 +370,7 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span id="line-126"></span><span>                </span><span class="annot"><span class="annottext">FilePath -&gt; FilePath -&gt; FilePath
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679074340"><span class="hs-identifier hs-var">param</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; FilePath -&gt; FilePath
+</span><a href="#local-6989586621679074338"><span class="hs-identifier hs-var">param</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; FilePath -&gt; FilePath
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">FilePath
 </span><span class="hs-string">&quot;\&quot;) \&quot;value\&quot; &quot;</span></span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; FilePath -&gt; FilePath
@@ -378,7 +378,7 @@ forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">Double -&gt; FilePath
 forall a. Show a =&gt; a -&gt; FilePath
 </span><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">Double
-</span><a href="#local-6989586621679074339"><span class="hs-identifier hs-var">value</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; FilePath -&gt; FilePath
+</span><a href="#local-6989586621679074337"><span class="hs-identifier hs-var">value</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; FilePath -&gt; FilePath
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">FilePath
 </span><span class="hs-string">&quot;)\n&quot;</span></span><span>
@@ -391,14 +391,14 @@ forall (f :: * -&gt; *) a. Applicative f =&gt; a -&gt; f a
 </span><span id="line-129"></span><span class="hs-comment">-- | Execute spectre command and return some result</span><span>
 </span><span id="line-130"></span><span class="annot"><a href="Spectre.Interactive.html#exec"><span class="hs-identifier hs-type">exec</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Spectre.Interactive.html#Session"><span class="hs-identifier hs-type">Session</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Spectre.Interactive.html#Command"><span class="hs-identifier hs-type">Command</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">BS.ByteString</span></span><span>
 </span><span id="line-131"></span><span id="exec"><span class="annot"><span class="annottext">exec :: Session -&gt; Command -&gt; IO ByteString
-</span><a href="Spectre.Interactive.html#exec"><span class="hs-identifier hs-var hs-var">exec</span></a></span></span><span> </span><span class="annot"><a href="Spectre.Interactive.html#Session"><span class="hs-identifier hs-type">Session</span></a></span><span class="hs-special">{</span><span id="local-6989586621679074335"><span id="local-6989586621679074336"><span class="annot"><span class="annottext">FilePath
+</span><a href="Spectre.Interactive.html#exec"><span class="hs-identifier hs-var hs-var">exec</span></a></span></span><span> </span><span class="annot"><a href="Spectre.Interactive.html#Session"><span class="hs-identifier hs-type">Session</span></a></span><span class="hs-special">{</span><span id="local-6989586621679074333"><span id="local-6989586621679074334"><span class="annot"><span class="annottext">FilePath
 Pty
 dir :: FilePath
 pty :: Pty
 dir :: Session -&gt; FilePath
 pty :: Session -&gt; Pty
-</span><a href="#local-6989586621679074335"><span class="hs-glyph hs-var hs-var hs-var hs-var">..</span></a></span></span></span><span class="hs-special">}</span><span> </span><span class="hs-special">(</span><span class="annot"><a href="Spectre.Interactive.html#GetAttribute"><span class="hs-identifier hs-type">GetAttribute</span></a></span><span> </span><span id="local-6989586621679074334"><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679074334"><span class="hs-identifier hs-var">param</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe ByteString -&gt; ByteString
+</span><a href="#local-6989586621679074333"><span class="hs-glyph hs-var hs-var hs-var hs-var">..</span></a></span></span></span><span class="hs-special">}</span><span> </span><span class="hs-special">(</span><span class="annot"><a href="Spectre.Interactive.html#GetAttribute"><span class="hs-identifier hs-type">GetAttribute</span></a></span><span> </span><span id="local-6989586621679074332"><span class="annot"><span class="annottext">FilePath
+</span><a href="#local-6989586621679074332"><span class="hs-identifier hs-var">param</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe ByteString -&gt; ByteString
 forall a. HasCallStack =&gt; Maybe a -&gt; a
 </span><span class="hs-identifier hs-var">fromJust</span></span><span> </span><span class="annot"><span class="annottext">(Maybe ByteString -&gt; ByteString)
 -&gt; (ByteString -&gt; Maybe ByteString) -&gt; ByteString -&gt; ByteString
@@ -425,15 +425,15 @@ forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span> </span><span class="annot"><span class="annottext">Pty -&gt; ByteString -&gt; IO ()
 </span><span class="hs-identifier hs-var">writePty</span></span><span> </span><span class="annot"><span class="annottext">Pty
-</span><a href="#local-6989586621679074336"><span class="hs-identifier hs-var">pty</span></a></span><span> </span><span class="annot"><span class="annottext">ByteString
-</span><a href="#local-6989586621679074328"><span class="hs-identifier hs-var">cmd</span></a></span><span> </span><span class="annot"><span class="annottext">IO () -&gt; IO ByteString -&gt; IO ByteString
+</span><a href="#local-6989586621679074334"><span class="hs-identifier hs-var">pty</span></a></span><span> </span><span class="annot"><span class="annottext">ByteString
+</span><a href="#local-6989586621679074326"><span class="hs-identifier hs-var">cmd</span></a></span><span> </span><span class="annot"><span class="annottext">IO () -&gt; IO ByteString -&gt; IO ByteString
 forall (m :: * -&gt; *) a b. Monad m =&gt; m a -&gt; m b -&gt; m b
 </span><span class="hs-operator hs-var">&gt;&gt;</span></span><span> </span><span class="annot"><span class="annottext">Pty -&gt; IO ByteString
 </span><a href="Spectre.Interactive.html#consumeOutput"><span class="hs-identifier hs-var">consumeOutput</span></a></span><span> </span><span class="annot"><span class="annottext">Pty
-</span><a href="#local-6989586621679074336"><span class="hs-identifier hs-var">pty</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621679074334"><span class="hs-identifier hs-var">pty</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-134"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-135"></span><span>    </span><span id="local-6989586621679074328"><span class="annot"><span class="annottext">cmd :: ByteString
-</span><a href="#local-6989586621679074328"><span class="hs-identifier hs-var hs-var">cmd</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; ByteString
+</span><span id="line-135"></span><span>    </span><span id="local-6989586621679074326"><span class="annot"><span class="annottext">cmd :: ByteString
+</span><a href="#local-6989586621679074326"><span class="hs-identifier hs-var hs-var">cmd</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; ByteString
 </span><span class="hs-identifier hs-var">CS.pack</span></span><span> </span><span>
 </span><span id="line-136"></span><span>        </span><span class="annot"><span class="annottext">(FilePath -&gt; ByteString) -&gt; FilePath -&gt; ByteString
 forall a b. (a -&gt; b) -&gt; a -&gt; b
@@ -442,17 +442,17 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span id="line-137"></span><span>                </span><span class="annot"><span class="annottext">FilePath -&gt; FilePath -&gt; FilePath
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679074334"><span class="hs-identifier hs-var">param</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; FilePath -&gt; FilePath
+</span><a href="#local-6989586621679074332"><span class="hs-identifier hs-var">param</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; FilePath -&gt; FilePath
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">FilePath
 </span><span class="hs-string">&quot;\&quot;) \&quot;value\&quot;)\n&quot;</span></span><span>
-</span><span id="line-138"></span><span class="annot"><a href="Spectre.Interactive.html#exec"><span class="hs-identifier hs-var">exec</span></a></span><span> </span><span class="annot"><a href="Spectre.Interactive.html#Session"><span class="hs-identifier hs-type">Session</span></a></span><span class="hs-special">{</span><span id="local-6989586621679074326"><span id="local-6989586621679074327"><span class="annot"><span class="annottext">FilePath
+</span><span id="line-138"></span><span class="annot"><a href="Spectre.Interactive.html#exec"><span class="hs-identifier hs-var">exec</span></a></span><span> </span><span class="annot"><a href="Spectre.Interactive.html#Session"><span class="hs-identifier hs-type">Session</span></a></span><span class="hs-special">{</span><span id="local-6989586621679074324"><span id="local-6989586621679074325"><span class="annot"><span class="annottext">FilePath
 Pty
 dir :: FilePath
 pty :: Pty
 dir :: Session -&gt; FilePath
 pty :: Session -&gt; Pty
-</span><a href="#local-6989586621679074326"><span class="hs-glyph hs-var hs-var hs-var hs-var">..</span></a></span></span></span><span class="hs-special">}</span><span> </span><span class="annot"><span class="annottext">Command
+</span><a href="#local-6989586621679074324"><span class="hs-glyph hs-var hs-var hs-var hs-var">..</span></a></span></span></span><span class="hs-special">}</span><span> </span><span class="annot"><span class="annottext">Command
 </span><a href="Spectre.Interactive.html#ListAnalysis"><span class="hs-identifier hs-var">ListAnalysis</span></a></span><span>         </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">ByteString -&gt; [ByteString] -&gt; ByteString
 </span><span class="hs-identifier hs-var">BS.intercalate</span></span><span> </span><span class="annot"><span class="annottext">ByteString
 </span><span class="hs-string">&quot;\n&quot;</span></span><span> </span><span class="annot"><span class="annottext">([ByteString] -&gt; ByteString)
@@ -461,7 +461,7 @@ forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
 </span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">(ByteString -&gt; ByteString) -&gt; [ByteString] -&gt; [ByteString]
 forall a b. (a -&gt; b) -&gt; [a] -&gt; [b]
 </span><span class="hs-identifier hs-var">map</span></span><span> </span><span class="annot"><span class="annottext">ByteString -&gt; ByteString
-</span><a href="#local-6989586621679074324"><span class="hs-identifier hs-var">parse</span></a></span><span>
+</span><a href="#local-6989586621679074322"><span class="hs-identifier hs-var">parse</span></a></span><span>
 </span><span id="line-139"></span><span>                                      </span><span class="annot"><span class="annottext">([ByteString] -&gt; [ByteString])
 -&gt; (ByteString -&gt; [ByteString]) -&gt; ByteString -&gt; [ByteString]
 forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
@@ -485,40 +485,40 @@ forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span> </span><span class="annot"><span class="annottext">Pty -&gt; ByteString -&gt; IO ()
 </span><span class="hs-identifier hs-var">writePty</span></span><span> </span><span class="annot"><span class="annottext">Pty
-</span><a href="#local-6989586621679074327"><span class="hs-identifier hs-var">pty</span></a></span><span> </span><span class="annot"><span class="annottext">ByteString
-</span><a href="#local-6989586621679074320"><span class="hs-identifier hs-var">cmd</span></a></span><span> </span><span class="annot"><span class="annottext">IO () -&gt; IO ByteString -&gt; IO ByteString
+</span><a href="#local-6989586621679074325"><span class="hs-identifier hs-var">pty</span></a></span><span> </span><span class="annot"><span class="annottext">ByteString
+</span><a href="#local-6989586621679074318"><span class="hs-identifier hs-var">cmd</span></a></span><span> </span><span class="annot"><span class="annottext">IO () -&gt; IO ByteString -&gt; IO ByteString
 forall (m :: * -&gt; *) a b. Monad m =&gt; m a -&gt; m b -&gt; m b
 </span><span class="hs-operator hs-var">&gt;&gt;</span></span><span> </span><span class="annot"><span class="annottext">Pty -&gt; IO ByteString
 </span><a href="Spectre.Interactive.html#consumeOutput"><span class="hs-identifier hs-var">consumeOutput</span></a></span><span> </span><span class="annot"><span class="annottext">Pty
-</span><a href="#local-6989586621679074327"><span class="hs-identifier hs-var">pty</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621679074325"><span class="hs-identifier hs-var">pty</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-141"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-142"></span><span>    </span><span id="local-6989586621679074320"><span class="annot"><span class="annottext">cmd :: ByteString
-</span><a href="#local-6989586621679074320"><span class="hs-identifier hs-var hs-var">cmd</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">ByteString
+</span><span id="line-142"></span><span>    </span><span id="local-6989586621679074318"><span class="annot"><span class="annottext">cmd :: ByteString
+</span><a href="#local-6989586621679074318"><span class="hs-identifier hs-var hs-var">cmd</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">ByteString
 </span><span class="hs-string">&quot;(sclListAnalysis)\n&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">BS.ByteString</span></span><span>
-</span><span id="line-143"></span><span>    </span><span id="local-6989586621679074319"><span class="annot"><span class="annottext">rex :: FilePath
-</span><a href="#local-6989586621679074319"><span class="hs-identifier hs-var hs-var">rex</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="">[r|&quot;(.+)&quot; *&quot;(.+)\&quot;|]</span></span><span>  </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-144"></span><span>    </span><span class="annot"><a href="#local-6989586621679074324"><span class="hs-identifier hs-type">parse</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">BS.ByteString</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">BS.ByteString</span></span><span>
-</span><span id="line-145"></span><span>    </span><span id="local-6989586621679074324"><span class="annot"><span class="annottext">parse :: ByteString -&gt; ByteString
-</span><a href="#local-6989586621679074324"><span class="hs-identifier hs-var hs-var">parse</span></a></span></span><span> </span><span id="local-6989586621679074318"><span class="annot"><span class="annottext">ByteString
-</span><a href="#local-6989586621679074318"><span class="hs-identifier hs-var">bs</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">let</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">FilePath
+</span><span id="line-143"></span><span>    </span><span id="local-6989586621679074317"><span class="annot"><span class="annottext">rex :: FilePath
+</span><a href="#local-6989586621679074317"><span class="hs-identifier hs-var hs-var">rex</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="">[r|&quot;(.+)&quot; *&quot;(.+)\&quot;|]</span></span><span>  </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-144"></span><span>    </span><span class="annot"><a href="#local-6989586621679074322"><span class="hs-identifier hs-type">parse</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">BS.ByteString</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">BS.ByteString</span></span><span>
+</span><span id="line-145"></span><span>    </span><span id="local-6989586621679074322"><span class="annot"><span class="annottext">parse :: ByteString -&gt; ByteString
+</span><a href="#local-6989586621679074322"><span class="hs-identifier hs-var hs-var">parse</span></a></span></span><span> </span><span id="local-6989586621679074316"><span class="annot"><span class="annottext">ByteString
+</span><a href="#local-6989586621679074316"><span class="hs-identifier hs-var">bs</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">let</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">FilePath
 </span><span class="hs-identifier">_</span></span><span class="hs-special">,</span><span class="annot"><span class="annottext">FilePath
 </span><span class="hs-identifier">_</span></span><span class="hs-special">,</span><span class="annot"><span class="annottext">FilePath
-</span><span class="hs-identifier">_</span></span><span class="hs-special">,</span><span id="local-6989586621679074317"><span class="annot"><span class="annottext">[FilePath]
-</span><a href="#local-6989586621679074317"><span class="hs-identifier hs-var">grps</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">ByteString -&gt; FilePath
+</span><span class="hs-identifier">_</span></span><span class="hs-special">,</span><span id="local-6989586621679074315"><span class="annot"><span class="annottext">[FilePath]
+</span><a href="#local-6989586621679074315"><span class="hs-identifier hs-var">grps</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">ByteString -&gt; FilePath
 </span><span class="hs-identifier hs-var">CS.unpack</span></span><span> </span><span class="annot"><span class="annottext">ByteString
-</span><a href="#local-6989586621679074318"><span class="hs-identifier hs-var">bs</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; FilePath -&gt; (FilePath, FilePath, FilePath, [FilePath])
+</span><a href="#local-6989586621679074316"><span class="hs-identifier hs-var">bs</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; FilePath -&gt; (FilePath, FilePath, FilePath, [FilePath])
 forall source source1 target.
 (RegexMaker Regex CompOption ExecOption source,
  RegexContext Regex source1 target) =&gt;
 source1 -&gt; source -&gt; target
 </span><span class="hs-operator hs-var">=~</span></span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679074319"><span class="hs-identifier hs-var">rex</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">]</span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621679074317"><span class="hs-identifier hs-var">rex</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">]</span><span class="hs-special">)</span><span>
 </span><span id="line-146"></span><span>                </span><span class="hs-keyword">in</span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; ByteString
 </span><span class="hs-identifier hs-var">CS.pack</span></span><span> </span><span class="annot"><span class="annottext">(FilePath -&gt; ByteString) -&gt; FilePath -&gt; ByteString
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">[FilePath] -&gt; FilePath
 </span><span class="hs-identifier hs-var">unwords</span></span><span> </span><span class="annot"><span class="annottext">[FilePath]
-</span><a href="#local-6989586621679074317"><span class="hs-identifier hs-var">grps</span></a></span><span>
+</span><a href="#local-6989586621679074315"><span class="hs-identifier hs-var">grps</span></a></span><span>
 </span><span id="line-147"></span><span>
 </span><span id="line-148"></span><span class="annot"><a href="Spectre.Interactive.html#exec"><span class="hs-identifier hs-var">exec</span></a></span><span> </span><span class="annot"><span class="annottext">Session
 </span><span class="hs-identifier">_</span></span><span> </span><span class="annot"><span class="annottext">Command
@@ -530,15 +530,15 @@ forall (f :: * -&gt; *) a. Applicative f =&gt; a -&gt; f a
 </span><span id="line-150"></span><span class="hs-comment">-- | Simulation Results</span><span>
 </span><span id="line-151"></span><span class="annot"><a href="Spectre.Interactive.html#results"><span class="hs-identifier hs-type">results</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Spectre.Interactive.html#Session"><span class="hs-identifier hs-type">Session</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">NutMeg</span></span><span>
 </span><span id="line-152"></span><span id="results"><span class="annot"><span class="annottext">results :: Session -&gt; IO NutMeg
-</span><a href="Spectre.Interactive.html#results"><span class="hs-identifier hs-var hs-var">results</span></a></span></span><span> </span><span class="annot"><a href="Spectre.Interactive.html#Session"><span class="hs-identifier hs-type">Session</span></a></span><span class="hs-special">{</span><span id="local-6989586621679074311"><span id="local-6989586621679074312"><span class="annot"><span class="annottext">FilePath
+</span><a href="Spectre.Interactive.html#results"><span class="hs-identifier hs-var hs-var">results</span></a></span></span><span> </span><span class="annot"><a href="Spectre.Interactive.html#Session"><span class="hs-identifier hs-type">Session</span></a></span><span class="hs-special">{</span><span id="local-6989586621679074309"><span id="local-6989586621679074310"><span class="annot"><span class="annottext">FilePath
 Pty
 dir :: FilePath
 pty :: Pty
 dir :: Session -&gt; FilePath
 pty :: Session -&gt; Pty
-</span><a href="#local-6989586621679074311"><span class="hs-glyph hs-var hs-var hs-var hs-var">..</span></a></span></span></span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; IO NutMeg
+</span><a href="#local-6989586621679074309"><span class="hs-glyph hs-var hs-var hs-var hs-var">..</span></a></span></span></span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; IO NutMeg
 </span><span class="hs-identifier hs-var">readNutRaw'</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679074311"><span class="hs-identifier hs-var">dir</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; FilePath -&gt; FilePath
+</span><a href="#local-6989586621679074309"><span class="hs-identifier hs-var">dir</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; FilePath -&gt; FilePath
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">FilePath
 </span><span class="hs-string">&quot;/hspectre.raw&quot;</span></span><span class="hs-special">)</span><span>
@@ -546,27 +546,27 @@ forall a. [a] -&gt; [a] -&gt; [a]
 </span><span id="line-154"></span><span class="hs-comment">-- | Run all simulation analyses</span><span>
 </span><span id="line-155"></span><span class="annot"><a href="Spectre.Interactive.html#runAll"><span class="hs-identifier hs-type">runAll</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Spectre.Interactive.html#Session"><span class="hs-identifier hs-type">Session</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">NutMeg</span></span><span>
 </span><span id="line-156"></span><span id="runAll"><span class="annot"><span class="annottext">runAll :: Session -&gt; IO NutMeg
-</span><a href="Spectre.Interactive.html#runAll"><span class="hs-identifier hs-var hs-var">runAll</span></a></span></span><span> </span><span id="local-6989586621679074309"><span class="annot"><span class="annottext">Session
-</span><a href="#local-6989586621679074309"><span class="hs-identifier hs-var">session</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Session -&gt; Command -&gt; IO ()
+</span><a href="Spectre.Interactive.html#runAll"><span class="hs-identifier hs-var hs-var">runAll</span></a></span></span><span> </span><span id="local-6989586621679074307"><span class="annot"><span class="annottext">Session
+</span><a href="#local-6989586621679074307"><span class="hs-identifier hs-var">session</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Session -&gt; Command -&gt; IO ()
 </span><a href="Spectre.Interactive.html#exec_"><span class="hs-identifier hs-var">exec_</span></a></span><span> </span><span class="annot"><span class="annottext">Session
-</span><a href="#local-6989586621679074309"><span class="hs-identifier hs-var">session</span></a></span><span> </span><span class="annot"><span class="annottext">Command
+</span><a href="#local-6989586621679074307"><span class="hs-identifier hs-var">session</span></a></span><span> </span><span class="annot"><span class="annottext">Command
 </span><a href="Spectre.Interactive.html#RunAll"><span class="hs-identifier hs-var">RunAll</span></a></span><span> </span><span class="annot"><span class="annottext">IO () -&gt; IO NutMeg -&gt; IO NutMeg
 forall (m :: * -&gt; *) a b. Monad m =&gt; m a -&gt; m b -&gt; m b
 </span><span class="hs-operator hs-var">&gt;&gt;</span></span><span> </span><span class="annot"><span class="annottext">Session -&gt; IO NutMeg
 </span><a href="Spectre.Interactive.html#results"><span class="hs-identifier hs-var">results</span></a></span><span> </span><span class="annot"><span class="annottext">Session
-</span><a href="#local-6989586621679074309"><span class="hs-identifier hs-var">session</span></a></span><span>
+</span><a href="#local-6989586621679074307"><span class="hs-identifier hs-var">session</span></a></span><span>
 </span><span id="line-157"></span><span>
 </span><span id="line-158"></span><span class="hs-comment">-- | Get Map of Available Simulation Analyses: (id, type)</span><span>
 </span><span id="line-159"></span><span class="annot"><a href="Spectre.Interactive.html#listAnalysis"><span class="hs-identifier hs-type">listAnalysis</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Spectre.Interactive.html#Session"><span class="hs-identifier hs-type">Session</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="hs-special">[</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span class="annot"><a href="Spectre.html#Analysis"><span class="hs-identifier hs-type">Analysis</span></a></span><span class="hs-special">)</span><span class="hs-special">]</span><span>
 </span><span id="line-160"></span><span id="listAnalysis"><span class="annot"><span class="annottext">listAnalysis :: Session -&gt; IO [(FilePath, Analysis)]
-</span><a href="Spectre.Interactive.html#listAnalysis"><span class="hs-identifier hs-var hs-var">listAnalysis</span></a></span></span><span> </span><span id="local-6989586621679074308"><span class="annot"><span class="annottext">Session
-</span><a href="#local-6989586621679074308"><span class="hs-identifier hs-var">session</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(ByteString -&gt; (FilePath, Analysis))
+</span><a href="Spectre.Interactive.html#listAnalysis"><span class="hs-identifier hs-var hs-var">listAnalysis</span></a></span></span><span> </span><span id="local-6989586621679074306"><span class="annot"><span class="annottext">Session
+</span><a href="#local-6989586621679074306"><span class="hs-identifier hs-var">session</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(ByteString -&gt; (FilePath, Analysis))
 -&gt; [ByteString] -&gt; [(FilePath, Analysis)]
 forall a b. (a -&gt; b) -&gt; [a] -&gt; [b]
 </span><span class="hs-identifier hs-var">map</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">(FilePath -&gt; Analysis)
 -&gt; (FilePath, FilePath) -&gt; (FilePath, Analysis)
 forall t b a. (t -&gt; b) -&gt; (a, t) -&gt; (a, b)
-</span><a href="#local-6989586621679074307"><span class="hs-identifier hs-var">snd'</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; Analysis
+</span><a href="#local-6989586621679074305"><span class="hs-identifier hs-var">snd'</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; Analysis
 forall a. Read a =&gt; FilePath -&gt; a
 </span><span class="hs-identifier hs-var">read</span></span><span> </span><span class="annot"><span class="annottext">((FilePath, FilePath) -&gt; (FilePath, Analysis))
 -&gt; (ByteString -&gt; (FilePath, FilePath))
@@ -575,7 +575,7 @@ forall a. Read a =&gt; FilePath -&gt; a
 forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
 </span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">[FilePath] -&gt; (FilePath, FilePath)
 forall a. [a] -&gt; (a, a)
-</span><a href="#local-6989586621679074305"><span class="hs-identifier hs-var">asTuple</span></a></span><span> </span><span class="annot"><span class="annottext">([FilePath] -&gt; (FilePath, FilePath))
+</span><a href="#local-6989586621679074303"><span class="hs-identifier hs-var">asTuple</span></a></span><span> </span><span class="annot"><span class="annottext">([FilePath] -&gt; (FilePath, FilePath))
 -&gt; (ByteString -&gt; [FilePath]) -&gt; ByteString -&gt; (FilePath, FilePath)
 forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
 </span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">(ByteString -&gt; FilePath) -&gt; [ByteString] -&gt; [FilePath]
@@ -597,25 +597,25 @@ forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="annot"><span class="annottext">Session -&gt; Command -&gt; IO ByteString
 </span><a href="Spectre.Interactive.html#exec"><span class="hs-identifier hs-var">exec</span></a></span><span> </span><span class="annot"><span class="annottext">Session
-</span><a href="#local-6989586621679074308"><span class="hs-identifier hs-var">session</span></a></span><span> </span><span class="annot"><span class="annottext">Command
+</span><a href="#local-6989586621679074306"><span class="hs-identifier hs-var">session</span></a></span><span> </span><span class="annot"><span class="annottext">Command
 </span><a href="Spectre.Interactive.html#ListAnalysis"><span class="hs-identifier hs-var">ListAnalysis</span></a></span><span>
 </span><span id="line-162"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-163"></span><span>    </span><span id="local-6989586621679074307"><span class="annot"><span class="annottext">snd' :: (t -&gt; b) -&gt; (a, t) -&gt; (a, b)
-</span><a href="#local-6989586621679074307"><span class="hs-identifier hs-var hs-var">snd'</span></a></span></span><span> </span><span id="local-6989586621679074303"><span class="annot"><span class="annottext">t -&gt; b
-</span><a href="#local-6989586621679074303"><span class="hs-identifier hs-var">f</span></a></span></span><span> </span><span class="hs-special">(</span><span id="local-6989586621679074302"><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679074302"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">,</span><span id="local-6989586621679074301"><span class="annot"><span class="annottext">t
-</span><a href="#local-6989586621679074301"><span class="hs-identifier hs-var">b</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679074302"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">t -&gt; b
-</span><a href="#local-6989586621679074303"><span class="hs-identifier hs-var">f</span></a></span><span> </span><span class="annot"><span class="annottext">t
-</span><a href="#local-6989586621679074301"><span class="hs-identifier hs-var">b</span></a></span><span class="hs-special">)</span><span>
-</span><span id="line-164"></span><span>    </span><span id="local-6989586621679074429"><span class="annot"><a href="#local-6989586621679074305"><span class="hs-identifier hs-type">asTuple</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="#local-6989586621679074429"><span class="hs-identifier hs-type">a</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">(</span><span class="annot"><a href="#local-6989586621679074429"><span class="hs-identifier hs-type">a</span></a></span><span class="hs-special">,</span><span class="annot"><a href="#local-6989586621679074429"><span class="hs-identifier hs-type">a</span></a></span><span class="hs-special">)</span></span><span>
-</span><span id="line-165"></span><span>    </span><span id="local-6989586621679074305"><span class="annot"><span class="annottext">asTuple :: [a] -&gt; (a, a)
-</span><a href="#local-6989586621679074305"><span class="hs-identifier hs-var hs-var">asTuple</span></a></span></span><span> </span><span class="hs-special">[</span><span id="local-6989586621679074300"><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679074300"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">,</span><span id="local-6989586621679074299"><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679074299"><span class="hs-identifier hs-var">b</span></a></span></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679074300"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">,</span><span class="annot"><span class="annottext">a
+</span><span id="line-163"></span><span>    </span><span id="local-6989586621679074305"><span class="annot"><span class="annottext">snd' :: (t -&gt; b) -&gt; (a, t) -&gt; (a, b)
+</span><a href="#local-6989586621679074305"><span class="hs-identifier hs-var hs-var">snd'</span></a></span></span><span> </span><span id="local-6989586621679074301"><span class="annot"><span class="annottext">t -&gt; b
+</span><a href="#local-6989586621679074301"><span class="hs-identifier hs-var">f</span></a></span></span><span> </span><span class="hs-special">(</span><span id="local-6989586621679074300"><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679074300"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">,</span><span id="local-6989586621679074299"><span class="annot"><span class="annottext">t
+</span><a href="#local-6989586621679074299"><span class="hs-identifier hs-var">b</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679074300"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">t -&gt; b
+</span><a href="#local-6989586621679074301"><span class="hs-identifier hs-var">f</span></a></span><span> </span><span class="annot"><span class="annottext">t
 </span><a href="#local-6989586621679074299"><span class="hs-identifier hs-var">b</span></a></span><span class="hs-special">)</span><span>
-</span><span id="line-166"></span><span>    </span><span class="annot"><a href="#local-6989586621679074305"><span class="hs-identifier hs-var">asTuple</span></a></span><span> </span><span class="annot"><span class="annottext">[a]
+</span><span id="line-164"></span><span>    </span><span id="local-6989586621679074427"><span class="annot"><a href="#local-6989586621679074303"><span class="hs-identifier hs-type">asTuple</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="#local-6989586621679074427"><span class="hs-identifier hs-type">a</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">(</span><span class="annot"><a href="#local-6989586621679074427"><span class="hs-identifier hs-type">a</span></a></span><span class="hs-special">,</span><span class="annot"><a href="#local-6989586621679074427"><span class="hs-identifier hs-type">a</span></a></span><span class="hs-special">)</span></span><span>
+</span><span id="line-165"></span><span>    </span><span id="local-6989586621679074303"><span class="annot"><span class="annottext">asTuple :: [a] -&gt; (a, a)
+</span><a href="#local-6989586621679074303"><span class="hs-identifier hs-var hs-var">asTuple</span></a></span></span><span> </span><span class="hs-special">[</span><span id="local-6989586621679074298"><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679074298"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">,</span><span id="local-6989586621679074297"><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679074297"><span class="hs-identifier hs-var">b</span></a></span></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679074298"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">,</span><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679074297"><span class="hs-identifier hs-var">b</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-166"></span><span>    </span><span class="annot"><a href="#local-6989586621679074303"><span class="hs-identifier hs-var">asTuple</span></a></span><span> </span><span class="annot"><span class="annottext">[a]
 </span><span class="hs-identifier">_</span></span><span>     </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; (a, a)
 forall a. HasCallStack =&gt; FilePath -&gt; a
 </span><span class="hs-identifier hs-var">error</span></span><span> </span><span class="annot"><span class="annottext">FilePath
@@ -624,25 +624,25 @@ forall a. HasCallStack =&gt; FilePath -&gt; a
 </span><span id="line-168"></span><span class="hs-comment">-- | Run Selected Analysis only</span><span>
 </span><span id="line-169"></span><span class="annot"><a href="Spectre.Interactive.html#runAnalysis"><span class="hs-identifier hs-type">runAnalysis</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Spectre.Interactive.html#Session"><span class="hs-identifier hs-type">Session</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">NutMeg</span></span><span>
 </span><span id="line-170"></span><span id="runAnalysis"><span class="annot"><span class="annottext">runAnalysis :: Session -&gt; FilePath -&gt; IO NutMeg
-</span><a href="Spectre.Interactive.html#runAnalysis"><span class="hs-identifier hs-var hs-var">runAnalysis</span></a></span></span><span> </span><span id="local-6989586621679074297"><span class="annot"><span class="annottext">Session
-</span><a href="#local-6989586621679074297"><span class="hs-identifier hs-var">session</span></a></span></span><span> </span><span id="local-6989586621679074296"><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679074296"><span class="hs-identifier hs-var">analysisID</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Session -&gt; Command -&gt; IO ()
+</span><a href="Spectre.Interactive.html#runAnalysis"><span class="hs-identifier hs-var hs-var">runAnalysis</span></a></span></span><span> </span><span id="local-6989586621679074295"><span class="annot"><span class="annottext">Session
+</span><a href="#local-6989586621679074295"><span class="hs-identifier hs-var">session</span></a></span></span><span> </span><span id="local-6989586621679074294"><span class="annot"><span class="annottext">FilePath
+</span><a href="#local-6989586621679074294"><span class="hs-identifier hs-var">analysisID</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Session -&gt; Command -&gt; IO ()
 </span><a href="Spectre.Interactive.html#exec_"><span class="hs-identifier hs-var">exec_</span></a></span><span> </span><span class="annot"><span class="annottext">Session
-</span><a href="#local-6989586621679074297"><span class="hs-identifier hs-var">session</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">FilePath -&gt; Command
+</span><a href="#local-6989586621679074295"><span class="hs-identifier hs-var">session</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">FilePath -&gt; Command
 </span><a href="Spectre.Interactive.html#RunAnalysis"><span class="hs-identifier hs-var">RunAnalysis</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679074296"><span class="hs-identifier hs-var">analysisID</span></a></span><span class="hs-special">)</span><span> </span><span>
+</span><a href="#local-6989586621679074294"><span class="hs-identifier hs-var">analysisID</span></a></span><span class="hs-special">)</span><span> </span><span>
 </span><span id="line-171"></span><span>                                        </span><span class="annot"><span class="annottext">IO () -&gt; IO NutMeg -&gt; IO NutMeg
 forall (m :: * -&gt; *) a b. Monad m =&gt; m a -&gt; m b -&gt; m b
 </span><span class="hs-operator hs-var">&gt;&gt;</span></span><span> </span><span class="annot"><span class="annottext">Session -&gt; IO NutMeg
 </span><a href="Spectre.Interactive.html#results"><span class="hs-identifier hs-var">results</span></a></span><span> </span><span class="annot"><span class="annottext">Session
-</span><a href="#local-6989586621679074297"><span class="hs-identifier hs-var">session</span></a></span><span>
+</span><a href="#local-6989586621679074295"><span class="hs-identifier hs-var">session</span></a></span><span>
 </span><span id="line-172"></span><span>
 </span><span id="line-173"></span><span class="hs-comment">-- | Get Netlist Parameter</span><span>
 </span><span id="line-174"></span><span class="annot"><a href="Spectre.Interactive.html#getParameter"><span class="hs-identifier hs-type">getParameter</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Spectre.Interactive.html#Session"><span class="hs-identifier hs-type">Session</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Spectre.Interactive.html#Parameter"><span class="hs-identifier hs-type">Parameter</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Double</span></span><span>
 </span><span id="line-175"></span><span id="getParameter"><span class="annot"><span class="annottext">getParameter :: Session -&gt; FilePath -&gt; IO Double
-</span><a href="Spectre.Interactive.html#getParameter"><span class="hs-identifier hs-var hs-var">getParameter</span></a></span></span><span> </span><span id="local-6989586621679074295"><span class="annot"><span class="annottext">Session
-</span><a href="#local-6989586621679074295"><span class="hs-identifier hs-var">session</span></a></span></span><span> </span><span id="local-6989586621679074294"><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679074294"><span class="hs-identifier hs-var">param</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; Double
+</span><a href="Spectre.Interactive.html#getParameter"><span class="hs-identifier hs-var hs-var">getParameter</span></a></span></span><span> </span><span id="local-6989586621679074293"><span class="annot"><span class="annottext">Session
+</span><a href="#local-6989586621679074293"><span class="hs-identifier hs-var">session</span></a></span></span><span> </span><span id="local-6989586621679074292"><span class="annot"><span class="annottext">FilePath
+</span><a href="#local-6989586621679074292"><span class="hs-identifier hs-var">param</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">FilePath -&gt; Double
 forall a. Read a =&gt; FilePath -&gt; a
 </span><span class="hs-identifier hs-var">read</span></span><span> </span><span class="annot"><span class="annottext">(FilePath -&gt; Double)
 -&gt; (ByteString -&gt; FilePath) -&gt; ByteString -&gt; Double
@@ -653,25 +653,25 @@ forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="annot"><span class="annottext">Session -&gt; Command -&gt; IO ByteString
 </span><a href="Spectre.Interactive.html#exec"><span class="hs-identifier hs-var">exec</span></a></span><span> </span><span class="annot"><span class="annottext">Session
-</span><a href="#local-6989586621679074295"><span class="hs-identifier hs-var">session</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">FilePath -&gt; Command
+</span><a href="#local-6989586621679074293"><span class="hs-identifier hs-var">session</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">FilePath -&gt; Command
 </span><a href="Spectre.Interactive.html#GetAttribute"><span class="hs-identifier hs-var">GetAttribute</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679074294"><span class="hs-identifier hs-var">param</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621679074292"><span class="hs-identifier hs-var">param</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-177"></span><span>
 </span><span id="line-178"></span><span class="hs-comment">-- | Get a list of Parameters as Map</span><span>
 </span><span id="line-179"></span><span class="annot"><a href="Spectre.Interactive.html#getParameters"><span class="hs-identifier hs-type">getParameters</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Spectre.Interactive.html#Session"><span class="hs-identifier hs-type">Session</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="Spectre.Interactive.html#Parameter"><span class="hs-identifier hs-type">Parameter</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">M.Map</span></span><span> </span><span class="annot"><a href="Spectre.Interactive.html#Parameter"><span class="hs-identifier hs-type">Parameter</span></a></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Double</span></span><span class="hs-special">)</span><span>
 </span><span id="line-180"></span><span id="getParameters"><span class="annot"><span class="annottext">getParameters :: Session -&gt; [FilePath] -&gt; IO (Map FilePath Double)
-</span><a href="Spectre.Interactive.html#getParameters"><span class="hs-identifier hs-var hs-var">getParameters</span></a></span></span><span> </span><span id="local-6989586621679074293"><span class="annot"><span class="annottext">Session
-</span><a href="#local-6989586621679074293"><span class="hs-identifier hs-var">session</span></a></span></span><span> </span><span id="local-6989586621679074292"><span class="annot"><span class="annottext">[FilePath]
-</span><a href="#local-6989586621679074292"><span class="hs-identifier hs-var">params</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-181"></span><span>    </span><span id="local-6989586621679074291"><span class="annot"><span class="annottext">[Double]
-</span><a href="#local-6989586621679074291"><span class="hs-identifier hs-var">values</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">(FilePath -&gt; IO Double) -&gt; [FilePath] -&gt; IO [Double]
+</span><a href="Spectre.Interactive.html#getParameters"><span class="hs-identifier hs-var hs-var">getParameters</span></a></span></span><span> </span><span id="local-6989586621679074291"><span class="annot"><span class="annottext">Session
+</span><a href="#local-6989586621679074291"><span class="hs-identifier hs-var">session</span></a></span></span><span> </span><span id="local-6989586621679074290"><span class="annot"><span class="annottext">[FilePath]
+</span><a href="#local-6989586621679074290"><span class="hs-identifier hs-var">params</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-181"></span><span>    </span><span id="local-6989586621679074289"><span class="annot"><span class="annottext">[Double]
+</span><a href="#local-6989586621679074289"><span class="hs-identifier hs-var">values</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">(FilePath -&gt; IO Double) -&gt; [FilePath] -&gt; IO [Double]
 forall (t :: * -&gt; *) (m :: * -&gt; *) a b.
 (Traversable t, Monad m) =&gt;
 (a -&gt; m b) -&gt; t a -&gt; m (t b)
 </span><span class="hs-identifier hs-var">mapM</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Session -&gt; FilePath -&gt; IO Double
 </span><a href="Spectre.Interactive.html#getParameter"><span class="hs-identifier hs-var">getParameter</span></a></span><span> </span><span class="annot"><span class="annottext">Session
-</span><a href="#local-6989586621679074293"><span class="hs-identifier hs-var">session</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[FilePath]
-</span><a href="#local-6989586621679074292"><span class="hs-identifier hs-var">params</span></a></span><span>
+</span><a href="#local-6989586621679074291"><span class="hs-identifier hs-var">session</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[FilePath]
+</span><a href="#local-6989586621679074290"><span class="hs-identifier hs-var">params</span></a></span><span>
 </span><span id="line-182"></span><span>    </span><span class="annot"><span class="annottext">Map FilePath Double -&gt; IO (Map FilePath Double)
 forall (f :: * -&gt; *) a. Applicative f =&gt; a -&gt; f a
 </span><span class="hs-identifier hs-var">pure</span></span><span> </span><span class="annot"><span class="annottext">(Map FilePath Double -&gt; IO (Map FilePath Double))
@@ -687,54 +687,54 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">[FilePath] -&gt; [Double] -&gt; [(FilePath, Double)]
 forall a b. [a] -&gt; [b] -&gt; [(a, b)]
 </span><span class="hs-identifier hs-var">zip</span></span><span> </span><span class="annot"><span class="annottext">[FilePath]
-</span><a href="#local-6989586621679074292"><span class="hs-identifier hs-var">params</span></a></span><span> </span><span class="annot"><span class="annottext">[Double]
-</span><a href="#local-6989586621679074291"><span class="hs-identifier hs-var">values</span></a></span><span>
+</span><a href="#local-6989586621679074290"><span class="hs-identifier hs-var">params</span></a></span><span> </span><span class="annot"><span class="annottext">[Double]
+</span><a href="#local-6989586621679074289"><span class="hs-identifier hs-var">values</span></a></span><span>
 </span><span id="line-183"></span><span>
 </span><span id="line-184"></span><span class="hs-comment">-- | Set Netlist Parameter</span><span>
 </span><span id="line-185"></span><span class="annot"><a href="Spectre.Interactive.html#setParameter"><span class="hs-identifier hs-type">setParameter</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Spectre.Interactive.html#Session"><span class="hs-identifier hs-type">Session</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Spectre.Interactive.html#Parameter"><span class="hs-identifier hs-type">Parameter</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Double</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
 </span><span id="line-186"></span><span id="setParameter"><span class="annot"><span class="annottext">setParameter :: Session -&gt; FilePath -&gt; Double -&gt; IO ()
-</span><a href="Spectre.Interactive.html#setParameter"><span class="hs-identifier hs-var hs-var">setParameter</span></a></span></span><span> </span><span id="local-6989586621679074288"><span class="annot"><span class="annottext">Session
-</span><a href="#local-6989586621679074288"><span class="hs-identifier hs-var">session</span></a></span></span><span> </span><span id="local-6989586621679074287"><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679074287"><span class="hs-identifier hs-var">param</span></a></span></span><span> </span><span id="local-6989586621679074286"><span class="annot"><span class="annottext">Double
-</span><a href="#local-6989586621679074286"><span class="hs-identifier hs-var">value</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Session -&gt; Command -&gt; IO ()
+</span><a href="Spectre.Interactive.html#setParameter"><span class="hs-identifier hs-var hs-var">setParameter</span></a></span></span><span> </span><span id="local-6989586621679074286"><span class="annot"><span class="annottext">Session
+</span><a href="#local-6989586621679074286"><span class="hs-identifier hs-var">session</span></a></span></span><span> </span><span id="local-6989586621679074285"><span class="annot"><span class="annottext">FilePath
+</span><a href="#local-6989586621679074285"><span class="hs-identifier hs-var">param</span></a></span></span><span> </span><span id="local-6989586621679074284"><span class="annot"><span class="annottext">Double
+</span><a href="#local-6989586621679074284"><span class="hs-identifier hs-var">value</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Session -&gt; Command -&gt; IO ()
 </span><a href="Spectre.Interactive.html#exec_"><span class="hs-identifier hs-var">exec_</span></a></span><span> </span><span class="annot"><span class="annottext">Session
-</span><a href="#local-6989586621679074288"><span class="hs-identifier hs-var">session</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">FilePath -&gt; Double -&gt; Command
+</span><a href="#local-6989586621679074286"><span class="hs-identifier hs-var">session</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">FilePath -&gt; Double -&gt; Command
 </span><a href="Spectre.Interactive.html#SetAttribute"><span class="hs-identifier hs-var">SetAttribute</span></a></span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679074287"><span class="hs-identifier hs-var">param</span></a></span><span> </span><span class="annot"><span class="annottext">Double
-</span><a href="#local-6989586621679074286"><span class="hs-identifier hs-var">value</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621679074285"><span class="hs-identifier hs-var">param</span></a></span><span> </span><span class="annot"><span class="annottext">Double
+</span><a href="#local-6989586621679074284"><span class="hs-identifier hs-var">value</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-187"></span><span>
 </span><span id="line-188"></span><span class="hs-comment">-- | Get a list of Parameters</span><span>
 </span><span id="line-189"></span><span class="annot"><a href="Spectre.Interactive.html#setParameters"><span class="hs-identifier hs-type">setParameters</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Spectre.Interactive.html#Session"><span class="hs-identifier hs-type">Session</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">M.Map</span></span><span> </span><span class="annot"><a href="Spectre.Interactive.html#Parameter"><span class="hs-identifier hs-type">Parameter</span></a></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Double</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">M.Map</span></span><span> </span><span class="annot"><a href="Spectre.Interactive.html#Parameter"><span class="hs-identifier hs-type">Parameter</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
 </span><span id="line-190"></span><span id="setParameters"><span class="annot"><span class="annottext">setParameters :: Session -&gt; Map FilePath Double -&gt; IO (Map FilePath ())
-</span><a href="Spectre.Interactive.html#setParameters"><span class="hs-identifier hs-var hs-var">setParameters</span></a></span></span><span> </span><span id="local-6989586621679074285"><span class="annot"><span class="annottext">Session
-</span><a href="#local-6989586621679074285"><span class="hs-identifier hs-var">session</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(FilePath -&gt; Double -&gt; IO ())
+</span><a href="Spectre.Interactive.html#setParameters"><span class="hs-identifier hs-var hs-var">setParameters</span></a></span></span><span> </span><span id="local-6989586621679074283"><span class="annot"><span class="annottext">Session
+</span><a href="#local-6989586621679074283"><span class="hs-identifier hs-var">session</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(FilePath -&gt; Double -&gt; IO ())
 -&gt; Map FilePath Double -&gt; IO (Map FilePath ())
 forall (t :: * -&gt; *) k a b.
 Applicative t =&gt;
 (k -&gt; a -&gt; t b) -&gt; Map k a -&gt; t (Map k b)
 </span><span class="hs-identifier hs-var">M.traverseWithKey</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Session -&gt; FilePath -&gt; Double -&gt; IO ()
 </span><a href="Spectre.Interactive.html#setParameter"><span class="hs-identifier hs-var">setParameter</span></a></span><span> </span><span class="annot"><span class="annottext">Session
-</span><a href="#local-6989586621679074285"><span class="hs-identifier hs-var">session</span></a></span><span class="hs-special">)</span><span> </span><span>
+</span><a href="#local-6989586621679074283"><span class="hs-identifier hs-var">session</span></a></span><span class="hs-special">)</span><span> </span><span>
 </span><span id="line-191"></span><span>
 </span><span id="line-192"></span><span class="hs-comment">-- | Close a spectre interactive session</span><span>
 </span><span id="line-193"></span><span class="annot"><a href="Spectre.Interactive.html#stopSession"><span class="hs-identifier hs-type">stopSession</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Spectre.Interactive.html#Session"><span class="hs-identifier hs-type">Session</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
 </span><span id="line-194"></span><span id="stopSession"><span class="annot"><span class="annottext">stopSession :: Session -&gt; IO ()
-</span><a href="Spectre.Interactive.html#stopSession"><span class="hs-identifier hs-var hs-var">stopSession</span></a></span></span><span> </span><span id="local-6989586621679074283"><span class="annot"><span class="annottext">s :: Session
-</span><a href="#local-6989586621679074283"><span class="hs-identifier hs-var">s</span></a></span></span><span class="hs-glyph">@</span><span class="annot"><a href="Spectre.Interactive.html#Session"><span class="hs-identifier hs-type">Session</span></a></span><span class="hs-special">{</span><span id="local-6989586621679074281"><span id="local-6989586621679074282"><span class="annot"><span class="annottext">FilePath
+</span><a href="Spectre.Interactive.html#stopSession"><span class="hs-identifier hs-var hs-var">stopSession</span></a></span></span><span> </span><span id="local-6989586621679074281"><span class="annot"><span class="annottext">s :: Session
+</span><a href="#local-6989586621679074281"><span class="hs-identifier hs-var">s</span></a></span></span><span class="hs-glyph">@</span><span class="annot"><a href="Spectre.Interactive.html#Session"><span class="hs-identifier hs-type">Session</span></a></span><span class="hs-special">{</span><span id="local-6989586621679074279"><span id="local-6989586621679074280"><span class="annot"><span class="annottext">FilePath
 Pty
 dir :: FilePath
 pty :: Pty
 dir :: Session -&gt; FilePath
 pty :: Session -&gt; Pty
-</span><a href="#local-6989586621679074281"><span class="hs-glyph hs-var hs-var hs-var hs-var">..</span></a></span></span></span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><a href="#local-6989586621679074279"><span class="hs-glyph hs-var hs-var hs-var hs-var">..</span></a></span></span></span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-195"></span><span>    </span><span class="annot"><span class="annottext">Session -&gt; Command -&gt; IO ()
 </span><a href="Spectre.Interactive.html#exec_"><span class="hs-identifier hs-var">exec_</span></a></span><span> </span><span class="annot"><span class="annottext">Session
-</span><a href="#local-6989586621679074283"><span class="hs-identifier hs-var">s</span></a></span><span> </span><span class="annot"><span class="annottext">Command
+</span><a href="#local-6989586621679074281"><span class="hs-identifier hs-var">s</span></a></span><span> </span><span class="annot"><span class="annottext">Command
 </span><a href="Spectre.Interactive.html#Close"><span class="hs-identifier hs-var">Close</span></a></span><span>
 </span><span id="line-196"></span><span>    </span><span class="annot"><span class="annottext">Pty -&gt; IO ()
 </span><span class="hs-identifier hs-var">closePty</span></span><span> </span><span class="annot"><span class="annottext">Pty
-</span><a href="#local-6989586621679074282"><span class="hs-identifier hs-var">pty</span></a></span><span>
+</span><a href="#local-6989586621679074280"><span class="hs-identifier hs-var">pty</span></a></span><span>
 </span><span id="line-197"></span><span>    </span><span class="annot"><span class="annottext">FilePath -&gt; IO ()
 </span><span class="hs-identifier hs-var">removeDirectoryRecursive</span></span><span> </span><span class="annot"><span class="annottext">FilePath
-</span><a href="#local-6989586621679074281"><span class="hs-identifier hs-var">dir</span></a></span><span>
+</span><a href="#local-6989586621679074279"><span class="hs-identifier hs-var">dir</span></a></span><span>
 </span><span id="line-198"></span></pre></body></html>

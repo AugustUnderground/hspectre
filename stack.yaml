@@ -15,7 +15,7 @@ extra-deps:
   - posix-pty-0.2.2@sha256:dd777df258b3b95fe01612c1204cde972ad1323c3289591ecc844ecb29e55e2b,1826
   - command-0.1.1@sha256:5232b98c195bc3b8a6f35c55ccd2fa424abe355ca54cfcd836bbe7e494834773,1110
   - github: AugustUnderground/hnutmeg
-    commit: 155e986316ad77d46993a81792f327df2ff34063 # 3d42a376dc2e39ba8deafa71e23bfbd09587c523
+    commit: d5cd9d8869f3a21472994b6c57ded29f7019c4cb # 3d42a376dc2e39ba8deafa71e23bfbd09587c523
 
 extra-include-dirs: []
 
