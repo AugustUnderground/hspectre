@@ -39,6 +39,14 @@ import           System.Directory
 import           Text.RawString.QQ
 import           Text.Regex.TDFA
 
+-- | Write offset to file
+writeOffset :: FilePath -> Int -> IO ()
+writeOffset dir = writeFile (dir ++ "/offset") . show
+
+-- | Read offset
+readOffset :: FilePath -> IO Int
+readOffset dir = read <$> readFile (dir ++ "/offset")
+
 -- | Spectre Commands
 data Command = Close                        -- ^ Quit the Session
              | RunAll                       -- ^ Run all simulation analyses
@@ -47,9 +55,22 @@ data Command = Close                        -- ^ Quit the Session
              | SetAttribute !String !Double -- ^ Alter a Parameter
              | GetAttribute !String         -- ^ Get Parameter Value
 
+instance Show Command where
+  show Close              = "(sclQuit)"
+  show RunAll             = "(sclRun \"all\")"
+  show ListAnalysis       = "(sclListAnalysis)"
+  show (RunAnalysis  a)   = "(sclRunAnalysis (sclGetAnalysis " ++ show (map toLower a) ++ "))"
+  show (SetAttribute a v) = "(sclSetAttribute (sclGetParameter (sclGetCircuit \"\") "
+                                ++ show a ++ ") \"value\" " ++ show v ++ ")"
+  show (GetAttribute a)   = "(sclGetAttribute (sclGetParameter (sclGetCircuit \"\") "
+                                ++ show a ++ ") \"value\")"
+-- | Write command
+writeCommand :: Command -> BS.ByteString
+writeCommand cmd = CS.pack $ show cmd ++ "\n"
+
 -- | Spectre Interactive Session
-data Session = Session { pty :: !Pty      --  ^ The Terminal
-                       , dir :: !FilePath --  ^ Temp Dir
+data Session = Session { pty    :: !Pty      -- ^ The Terminal
+                       , dir    :: !FilePath -- ^ Temp Dir
                        }
 
 -- | Name of a netlist Parameter
@@ -84,14 +105,14 @@ startSession inc net dir' = do
     doesFileExist log' >>= flip when (removeFile log')
     createDirectoryIfMissing True dir'
 
-    _ <- spawnCommand $! "mkfifo " ++ log'
+    !_ <- spawnCommand $! "mkfifo " ++ log'
     pty' <- fst <$> spawnWithPty Nothing True spectre args (80,100)
-    _ <- spawnCommand $! "cat "    ++ log' ++ " > /dev/null &"
+    !_ <- spawnCommand $! "cat "    ++ log' ++ " > /dev/null &"
 
     let session = Session pty' dir'
-    -- writeOffset session 0
+    writeOffset dir' 0
 
-    _ <- threadWaitReadPty pty' >> consumeOutput pty'
+    !_ <- threadWaitReadPty pty' >> consumeOutput pty'
 
     pure session
   where
@@ -109,47 +130,34 @@ startSession inc net dir' = do
 
 -- | Execute a spectre Command which changes the state but returns nothing
 exec_ :: Session -> Command -> IO ()
-exec_ Session{..} Close                      = writePty pty cmd >> readPty pty >> pure ()
-  where
-    cmd = "(sclQuit)\n"
-exec_ Session{..} RunAll                     = writePty pty cmd >> discardOutput pty
-  where
-    cmd = "(sclRun \"all\")\n"
-exec_ Session{..} (RunAnalysis analysis)     = writePty pty cmd >> discardOutput pty
-  where
-    cmd = CS.pack $ "(sclRunAnalysis (sclGetAnalysis \"" 
-       ++ map toLower (show analysis) ++ "\"))\n"
-exec_ Session{..} (SetAttribute param value) = writePty pty cmd >> discardOutput pty
-  where
-    cmd = CS.pack 
-        $ "(sclSetAttribute (sclGetParameter (sclGetCircuit \"\") \"" 
-                ++ param ++ "\") \"value\" " ++ show value ++ ")\n"
-exec_ _           _                          = pure ()
+exec_ Session{..} Close = writePty pty (writeCommand Close) >> readPty pty >> pure ()
+exec_ Session{..} cmd   = writePty pty (writeCommand cmd)   >> discardOutput pty
 
 -- | Execute spectre command and return some result
 exec :: Session -> Command -> IO BS.ByteString
-exec Session{..} (GetAttribute param) = fromJust . BS.stripSuffix "\r" 
+exec Session{..} cmd@(GetAttribute _) = fromJust . BS.stripSuffix "\r" 
                                       . last . init . CS.lines 
-                                     <$> ( writePty pty cmd >> consumeOutput pty)
+                                     <$> (writePty pty cmd' >> consumeOutput pty)
   where
-    cmd = CS.pack 
-        $ "(sclGetAttribute (sclGetParameter (sclGetCircuit \"\") \"" 
-                ++ param ++ "\") \"value\")\n"
+    cmd' = writeCommand cmd
 exec Session{..} ListAnalysis         = BS.intercalate "\n" . map parse
                                       . takeWhile (/= ")\r") . drop 1 . CS.lines 
                                      <$> ( writePty pty cmd >> consumeOutput pty)
   where
-    cmd = "(sclListAnalysis)\n" :: BS.ByteString
+    cmd = writeCommand ListAnalysis
     rex = [r|"(.+)" *"(.+)\"|]  :: String
     parse :: BS.ByteString -> BS.ByteString
     parse bs = let (_,_,_,grps) = CS.unpack bs =~ rex :: (String, String, String, [String])
                 in CS.pack $ unwords grps
-
-exec _ _                              = pure prompt
+exec Session{..} cmd                  = writePty pty (writeCommand cmd) >> consumeOutput pty
 
 -- | Simulation Results
 results :: Session -> IO NutMeg
-results Session{..} = readNutRaw' (dir ++ "/hspectre.raw")
+results Session{..} = do
+    offset <- readOffset dir
+    (!nutmeg, !offset') <- readNutRawWithOffset' offset (dir ++ "/hspectre.raw")
+    writeOffset dir offset'
+    pure nutmeg
 
 -- | Run all simulation analyses
 runAll :: Session -> IO NutMeg

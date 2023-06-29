@@ -5,7 +5,7 @@
 -- | Please see the README on GitHub at
 --   <a>https://github.com/augustunderground/hspectre#readme</a>
 @package hspectre
-@version 0.2.1.0
+@version 0.2.2.0
 
 
 -- | Communication between Haskell and Spectre
@@ -54,7 +54,11 @@ module Spectre.Interactive
 -- | Spectre Interactive Session
 data Session
 Session :: !Pty -> !FilePath -> Session
+
+-- | The Terminal
 [pty] :: Session -> !Pty
+
+-- | Temp Dir
 [dir] :: Session -> !FilePath
 
 -- | Name of a netlist Parameter
@@ -90,3 +94,4 @@ getParameters :: Session -> [Parameter] -> IO (Map Parameter Double)
 
 -- | Get a list of Parameters
 setParameters :: Session -> Map Parameter Double -> IO (Map Parameter ())
+instance GHC.Show.Show Spectre.Interactive.Command
