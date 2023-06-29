@@ -62,14 +62,16 @@ prompt = "> " :: BS.ByteString
 -- | Consume all output from Pty
 consumeOutput :: Pty -> IO BS.ByteString
 consumeOutput pty' = do
-    output <- drainOutput pty' >> readPty pty'
+    !output <- drainOutput pty' >> readPty pty'
     if BS.isSuffixOf prompt output 
        then pure output 
        else BS.append output <$> consumeOutput pty'
 
 -- | Discard output from session terminal
 discardOutput :: Pty -> IO ()
-discardOutput pty' = consumeOutput pty' >> pure ()
+discardOutput pty' = do
+    !_ <- consumeOutput pty' 
+    pure ()
 
 -- | Initialize spectre session with given include path and netlist
 startSession' :: [FilePath] -> FilePath -> IO Session
@@ -79,9 +81,7 @@ startSession' includes netlist = createTempDirectory "/tmp" "hspectre"
 -- | Initialize spectre session with given include path, netlist and temp dir
 startSession :: [FilePath] -> FilePath -> FilePath -> IO Session
 startSession inc net dir' = do
-    
     doesFileExist log' >>= flip when (removeFile log')
-
     createDirectoryIfMissing True dir'
 
     _ <- spawnCommand $! "mkfifo " ++ log'
@@ -178,7 +178,7 @@ getParameter session param = read . CS.unpack
 -- | Get a list of Parameters as Map
 getParameters :: Session -> [Parameter] -> IO (M.Map Parameter Double)
 getParameters session params = do
-    values <- mapM (getParameter session) params
+    !values <- mapM (getParameter session) params
     pure . M.fromList $ zip params values
 
 -- | Set Netlist Parameter

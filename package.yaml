@@ -32,6 +32,7 @@ dependencies:
 - vector
 - regex-tdfa
 - raw-strings-qq
+- scheduler
 
 ghc-options:
 - -Wall
@@ -58,23 +59,3 @@ tests:
     - -with-rtsopts=-N
     dependencies:
     - hspectre
-
-      # verbatim: |
-      #   foreign-library spectre
-      #     type:                native-shared
-      #     other-modules:       SharedSpectre, Spectre, Spectre.Interactive
-      #     build-depends:
-      #       base >=4.7 && <5
-      #       , hnutmeg
-      #       , bytestring
-      #       , posix-pty
-      #       , command
-      #       , directory
-      #       , temporary
-      #       , containers
-      #       , vector
-      #       , regex-tdfa
-      #       , raw-strings-qq
-      #     hs-source-dirs:      src
-      #     c-sources:           csrc/spectre.c
-      #     default-language:    Haskell2010
