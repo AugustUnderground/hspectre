@@ -15,7 +15,7 @@ module Spectre.Interactive ( Session (..)
                            , stopSession
                            -- * Running Simulations
                            , runAll, runAll_
-                           , results
+                           , results, results'
                            , listAnalysis
                            , runAnalysis
                            -- * Netlist Parameters
@@ -159,6 +159,10 @@ results Session{..} = do
     (!nutmeg, !offset') <- readNutRawWithOffset' offset (dir ++ "/hspectre.raw")
     writeOffset dir offset'
     pure nutmeg
+
+-- | Read entire sessions simulation data, disregarding file offset
+results' :: Session -> IO NutMeg
+results' Session{..} = readNutRaw' (dir ++ "/hspectre.raw")
 
 -- | Run all simulation analyses
 runAll :: Session -> IO NutMeg
