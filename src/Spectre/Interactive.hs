@@ -14,7 +14,8 @@ module Spectre.Interactive ( Session (..)
                            , startSession'
                            , stopSession
                            -- * Running Simulations
-                           , runAll
+                           , runAll, runAll_
+                           , results
                            , listAnalysis
                            , runAnalysis
                            -- * Netlist Parameters
@@ -151,7 +152,7 @@ exec Session{..} ListAnalysis         = BS.intercalate "\n" . map parse
                 in CS.pack $ unwords grps
 exec Session{..} cmd                  = writePty pty (writeCommand cmd) >> consumeOutput pty
 
--- | Simulation Results
+-- | Get Simulation Results
 results :: Session -> IO NutMeg
 results Session{..} = do
     offset <- readOffset dir
@@ -162,6 +163,10 @@ results Session{..} = do
 -- | Run all simulation analyses
 runAll :: Session -> IO NutMeg
 runAll session = exec_ session RunAll >> results session
+
+-- | Run all simulation analyses don't read results
+runAll_ :: Session -> IO ()
+runAll_ session = exec_ session RunAll 
 
 -- | Get Map of Available Simulation Analyses: (id, type)
 listAnalysis :: Session -> IO [(String, Analysis)]

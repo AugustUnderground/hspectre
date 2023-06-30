@@ -5,7 +5,7 @@
 -- | Please see the README on GitHub at
 --   <a>https://github.com/augustunderground/hspectre#readme</a>
 @package hspectre
-@version 0.2.2.0
+@version 0.2.3.0
 
 
 -- | Communication between Haskell and Spectre
@@ -76,6 +76,12 @@ stopSession :: Session -> IO ()
 
 -- | Run all simulation analyses
 runAll :: Session -> IO NutMeg
+
+-- | Run all simulation analyses don't read results
+runAll_ :: Session -> IO ()
+
+-- | Get Simulation Results
+results :: Session -> IO NutMeg
 
 -- | Get Map of Available Simulation Analyses: (id, type)
 listAnalysis :: Session -> IO [(String, Analysis)]
