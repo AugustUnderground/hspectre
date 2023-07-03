@@ -9,6 +9,8 @@ import           System.Posix.Pty
 import qualified Data.ByteString       as BS
 import qualified Data.ByteString.Char8 as CS
 import qualified Data.Map              as M
+import qualified Data.Vector.Unboxed as V
+import           Data.Complex
 import           Data.Maybe                  (mapMaybe, fromJust)
 import           Text.RawString.QQ
 import           Text.Regex.TDFA
@@ -23,6 +25,7 @@ main = do
     -- replicateM_ 130 (runAll_ s)
 
     !nut <- sweep s (replicate 100 M.empty)
+    let ac = M.map N.asVector $! snd (nut !! 7) :: M.Map String (V.Vector (Complex Double))
     -- !nut <- N.readFile' (dir' ++ "/hspectre.raw")
 
     pure ()
