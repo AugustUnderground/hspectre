@@ -191,9 +191,8 @@ setParameters session = M.traverseWithKey (setParameter session)
 -- | Perform a number of simulation analyses for a given list of parameter maps
 -- and read the results only afterwards.
 sweep :: Session -> [M.Map Parameter Double] -> IO NutMeg
-sweep session params = do
-    mapM_ (\p -> setParameters session p >> runAll_ session) params
-        >> results' session
+sweep session params = mapM_ (\p -> setParameters session p >> runAll_ session) params
+                        >> results' session
 
 -- | Close a spectre interactive session
 stopSession :: Session -> IO ()

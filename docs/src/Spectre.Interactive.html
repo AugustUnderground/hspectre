@@ -730,8 +730,7 @@ Applicative t =&gt;
 </span><span id="line-194"></span><span id="sweep"><span class="annot"><span class="annottext">sweep :: Session -&gt; [Map String Double] -&gt; IO NutMeg
 </span><a href="Spectre.Interactive.html#sweep"><span class="hs-identifier hs-var hs-var">sweep</span></a></span></span><span> </span><span id="local-6989586621679075199"><span class="annot"><span class="annottext">Session
 </span><a href="#local-6989586621679075199"><span class="hs-identifier hs-var">session</span></a></span></span><span> </span><span id="local-6989586621679075198"><span class="annot"><span class="annottext">[Map String Double]
-</span><a href="#local-6989586621679075198"><span class="hs-identifier hs-var">params</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-195"></span><span>    </span><span class="annot"><span class="annottext">(Map String Double -&gt; IO ()) -&gt; [Map String Double] -&gt; IO ()
+</span><a href="#local-6989586621679075198"><span class="hs-identifier hs-var">params</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(Map String Double -&gt; IO ()) -&gt; [Map String Double] -&gt; IO ()
 forall (t :: * -&gt; *) (m :: * -&gt; *) a b.
 (Foldable t, Monad m) =&gt;
 (a -&gt; m b) -&gt; t a -&gt; m ()
@@ -745,15 +744,15 @@ forall (m :: * -&gt; *) a b. Monad m =&gt; m a -&gt; m b -&gt; m b
 </span><a href="Spectre.Interactive.html#runAll_"><span class="hs-identifier hs-var">runAll_</span></a></span><span> </span><span class="annot"><span class="annottext">Session
 </span><a href="#local-6989586621679075199"><span class="hs-identifier hs-var">session</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[Map String Double]
 </span><a href="#local-6989586621679075198"><span class="hs-identifier hs-var">params</span></a></span><span>
-</span><span id="line-196"></span><span>        </span><span class="annot"><span class="annottext">IO () -&gt; IO NutMeg -&gt; IO NutMeg
+</span><span id="line-195"></span><span>                        </span><span class="annot"><span class="annottext">IO () -&gt; IO NutMeg -&gt; IO NutMeg
 forall (m :: * -&gt; *) a b. Monad m =&gt; m a -&gt; m b -&gt; m b
 </span><span class="hs-operator hs-var">&gt;&gt;</span></span><span> </span><span class="annot"><span class="annottext">Session -&gt; IO NutMeg
 </span><a href="Spectre.Interactive.html#results%27"><span class="hs-identifier hs-var">results'</span></a></span><span> </span><span class="annot"><span class="annottext">Session
 </span><a href="#local-6989586621679075199"><span class="hs-identifier hs-var">session</span></a></span><span>
-</span><span id="line-197"></span><span>
-</span><span id="line-198"></span><span class="hs-comment">-- | Close a spectre interactive session</span><span>
-</span><span id="line-199"></span><span class="annot"><a href="Spectre.Interactive.html#stopSession"><span class="hs-identifier hs-type">stopSession</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Spectre.Interactive.html#Session"><span class="hs-identifier hs-type">Session</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
-</span><span id="line-200"></span><span id="stopSession"><span class="annot"><span class="annottext">stopSession :: Session -&gt; IO ()
+</span><span id="line-196"></span><span>
+</span><span id="line-197"></span><span class="hs-comment">-- | Close a spectre interactive session</span><span>
+</span><span id="line-198"></span><span class="annot"><a href="Spectre.Interactive.html#stopSession"><span class="hs-identifier hs-type">stopSession</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Spectre.Interactive.html#Session"><span class="hs-identifier hs-type">Session</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
+</span><span id="line-199"></span><span id="stopSession"><span class="annot"><span class="annottext">stopSession :: Session -&gt; IO ()
 </span><a href="Spectre.Interactive.html#stopSession"><span class="hs-identifier hs-var hs-var">stopSession</span></a></span></span><span> </span><span id="local-6989586621679075195"><span class="annot"><span class="annottext">s :: Session
 </span><a href="#local-6989586621679075195"><span class="hs-identifier hs-var">s</span></a></span></span><span class="hs-glyph">@</span><span class="annot"><a href="Spectre.Interactive.html#Session"><span class="hs-identifier hs-type">Session</span></a></span><span class="hs-special">{</span><span id="local-6989586621679075193"><span id="local-6989586621679075194"><span class="annot"><span class="annottext">String
 Pty
@@ -762,14 +761,14 @@ pty :: Pty
 dir :: Session -&gt; String
 pty :: Session -&gt; Pty
 </span><a href="#local-6989586621679075193"><span class="hs-glyph hs-var hs-var hs-var hs-var">..</span></a></span></span></span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-201"></span><span>    </span><span class="annot"><span class="annottext">Session -&gt; Command -&gt; IO ()
+</span><span id="line-200"></span><span>    </span><span class="annot"><span class="annottext">Session -&gt; Command -&gt; IO ()
 </span><a href="Spectre.Interactive.html#exec_"><span class="hs-identifier hs-var">exec_</span></a></span><span> </span><span class="annot"><span class="annottext">Session
 </span><a href="#local-6989586621679075195"><span class="hs-identifier hs-var">s</span></a></span><span> </span><span class="annot"><span class="annottext">Command
 </span><a href="Spectre.Interactive.html#Close"><span class="hs-identifier hs-var">Close</span></a></span><span>
-</span><span id="line-202"></span><span>    </span><span class="annot"><span class="annottext">Pty -&gt; IO ()
+</span><span id="line-201"></span><span>    </span><span class="annot"><span class="annottext">Pty -&gt; IO ()
 </span><span class="hs-identifier hs-var">closePty</span></span><span> </span><span class="annot"><span class="annottext">Pty
 </span><a href="#local-6989586621679075194"><span class="hs-identifier hs-var">pty</span></a></span><span>
-</span><span id="line-203"></span><span>    </span><span class="annot"><span class="annottext">String -&gt; IO ()
+</span><span id="line-202"></span><span>    </span><span class="annot"><span class="annottext">String -&gt; IO ()
 </span><span class="hs-identifier hs-var">removeDirectoryRecursive</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679075193"><span class="hs-identifier hs-var">dir</span></a></span><span>
-</span><span id="line-204"></span></pre></body></html>
+</span><span id="line-203"></span></pre></body></html>

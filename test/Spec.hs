@@ -19,14 +19,15 @@ main = do
     -- runAll s
     -- writePty (pty s) "(sclListAnalysis)\n" 
 
-    -- !s <- startSession [] (dir' ++ net') dir'
+    !s <- startSession [] (dir' ++ net') dir'
     -- replicateM_ 130 (runAll_ s)
 
+    !nut <- sweep s (replicate 100 M.empty)
     -- !nut <- N.readFile' (dir' ++ "/hspectre.raw")
 
     pure ()
   where
     n = 10
     n' = fromIntegral n
-    dir' = "/home/uhlmanny/Workspace/hspectre/test"
+    dir' = "/home/uhlmanny/Workspace/hspectre/__app"
     net' = "/tb.scs"
