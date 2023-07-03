@@ -19,7 +19,7 @@
 </span><span id="line-19"></span><span>              </span><span class="hs-glyph">|</span><span> </span><span id="NOISE"><span class="annot"><a href="Spectre.html#NOISE"><span class="hs-identifier hs-var">NOISE</span></a></span></span><span>   </span><span class="hs-comment">-- ^ Noise Analysis</span><span>
 </span><span id="line-20"></span><span>              </span><span class="hs-glyph">|</span><span> </span><span id="XF"><span class="annot"><a href="Spectre.html#XF"><span class="hs-identifier hs-var">XF</span></a></span></span><span>      </span><span class="hs-comment">-- ^ XF Analysis</span><span>
 </span><span id="line-21"></span><span>              </span><span class="hs-glyph">|</span><span> </span><span id="ALTER"><span class="annot"><a href="Spectre.html#ALTER"><span class="hs-identifier hs-var">ALTER</span></a></span></span><span>   </span><span class="hs-comment">-- ^ Alter Statement</span><span>
-</span><span id="line-22"></span><span>              </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679075155"><span id="local-6989586621679075157"><span class="annot"><span class="annottext">Analysis -&gt; Analysis -&gt; Bool
+</span><span id="line-22"></span><span>              </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679075169"><span id="local-6989586621679075171"><span class="annot"><span class="annottext">Analysis -&gt; Analysis -&gt; Bool
 (Analysis -&gt; Analysis -&gt; Bool)
 -&gt; (Analysis -&gt; Analysis -&gt; Bool) -&gt; Eq Analysis
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -30,8 +30,8 @@ $c== :: Analysis -&gt; Analysis -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-23"></span><span>
 </span><span id="line-24"></span><span class="hs-comment">-- | Show instance for analyses are lowercase</span><span>
-</span><span id="line-25"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679075149"><span id="local-6989586621679075152"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="Spectre.html#Analysis"><span class="hs-identifier hs-type">Analysis</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-26"></span><span>  </span><span id="local-6989586621679075147"><span class="annot"><span class="annottext">show :: Analysis -&gt; String
+</span><span id="line-25"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679075163"><span id="local-6989586621679075166"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="Spectre.html#Analysis"><span class="hs-identifier hs-type">Analysis</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-26"></span><span>  </span><span id="local-6989586621679075161"><span class="annot"><span class="annottext">show :: Analysis -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span> </span><span class="annot"><span class="annottext">Analysis
 </span><a href="Spectre.html#AC"><span class="hs-identifier hs-var">AC</span></a></span><span>      </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;ac&quot;</span></span><span>
@@ -58,8 +58,8 @@ $c== :: Analysis -&gt; Analysis -&gt; Bool
 </span><span class="hs-string">&quot;alter&quot;</span></span><span>
 </span><span id="line-34"></span><span>
 </span><span id="line-35"></span><span class="hs-comment">-- | Read instance for analyses handle lowercase</span><span>
-</span><span id="line-36"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679075139"><span id="local-6989586621679075141"><span id="local-6989586621679075143"><span class="annot"><span class="hs-identifier hs-type">Read</span></span><span> </span><span class="annot"><a href="Spectre.html#Analysis"><span class="hs-identifier hs-type">Analysis</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-37"></span><span>  </span><span id="local-6989586621679075137"><span class="annot"><span class="annottext">readsPrec :: Int -&gt; ReadS Analysis
+</span><span id="line-36"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679075153"><span id="local-6989586621679075155"><span id="local-6989586621679075157"><span class="annot"><span class="hs-identifier hs-type">Read</span></span><span> </span><span class="annot"><a href="Spectre.html#Analysis"><span class="hs-identifier hs-type">Analysis</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-37"></span><span>  </span><span id="local-6989586621679075151"><span class="annot"><span class="annottext">readsPrec :: Int -&gt; ReadS Analysis
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">readsPrec</span></span></span><span> </span><span class="annot"><span class="annottext">Int
 </span><span class="hs-identifier">_</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;ac&quot;</span></span><span>      </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="hs-special">(</span><span class="annot"><span class="annottext">Analysis
@@ -110,8 +110,8 @@ forall a. HasCallStack =&gt; a
 </span><span id="line-48"></span><span class="annot"><a href="Spectre.html#version"><span class="hs-identifier hs-type">version</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-49"></span><span id="version"><span class="annot"><span class="annottext">version :: IO String
 </span><a href="Spectre.html#version"><span class="hs-identifier hs-var hs-var">version</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-50"></span><span>    </span><span class="annot"><span class="hs-identifier hs-type">Stdout</span></span><span> </span><span id="local-6989586621679075133"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679075133"><span class="hs-identifier hs-var">v</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[CmdOption] -&gt; String -&gt; [String] -&gt; IO Stdout
+</span><span id="line-50"></span><span>    </span><span class="annot"><span class="hs-identifier hs-type">Stdout</span></span><span> </span><span id="local-6989586621679075147"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679075147"><span class="hs-identifier hs-var">v</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[CmdOption] -&gt; String -&gt; [String] -&gt; IO Stdout
 forall r. CmdResult r =&gt; [CmdOption] -&gt; String -&gt; [String] -&gt; IO r
 </span><span class="hs-identifier hs-var">command</span></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;spectre&quot;</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">String
@@ -119,67 +119,67 @@ forall r. CmdResult r =&gt; [CmdOption] -&gt; String -&gt; [String] -&gt; IO r
 </span><span id="line-51"></span><span>    </span><span class="annot"><span class="annottext">String -&gt; IO String
 forall (f :: * -&gt; *) a. Applicative f =&gt; a -&gt; f a
 </span><span class="hs-identifier hs-var">pure</span></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679075133"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679075147"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-52"></span><span>
 </span><span id="line-53"></span><span class="hs-comment">-- | Simulate a netlist non interactively and return simulation results</span><span>
 </span><span id="line-54"></span><span class="annot"><a href="Spectre.html#simulate"><span class="hs-identifier hs-type">simulate</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">NutMeg</span></span><span>
 </span><span id="line-55"></span><span id="simulate"><span class="annot"><span class="annottext">simulate :: [String] -&gt; String -&gt; IO NutMeg
-</span><a href="Spectre.html#simulate"><span class="hs-identifier hs-var hs-var">simulate</span></a></span></span><span> </span><span id="local-6989586621679075131"><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679075131"><span class="hs-identifier hs-var">includes</span></a></span></span><span> </span><span id="local-6989586621679075130"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679075130"><span class="hs-identifier hs-var">netlist</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-56"></span><span>    </span><span id="local-6989586621679075129"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679075129"><span class="hs-identifier hs-var">tmp</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">String -&gt; String -&gt; IO String
+</span><a href="Spectre.html#simulate"><span class="hs-identifier hs-var hs-var">simulate</span></a></span></span><span> </span><span id="local-6989586621679075145"><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621679075145"><span class="hs-identifier hs-var">includes</span></a></span></span><span> </span><span id="local-6989586621679075144"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679075144"><span class="hs-identifier hs-var">netlist</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-56"></span><span>    </span><span id="local-6989586621679075143"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679075143"><span class="hs-identifier hs-var">tmp</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">String -&gt; String -&gt; IO String
 </span><span class="hs-identifier hs-var">createTempDirectory</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;/tmp&quot;</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;hspectre&quot;</span></span><span>
-</span><span id="line-57"></span><span>    </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621679075127"><span class="annot"><span class="annottext">raw' :: String
-</span><a href="#local-6989586621679075127"><span class="hs-identifier hs-var hs-var">raw'</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679075129"><span class="hs-identifier hs-var">tmp</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><span id="line-57"></span><span>    </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621679075141"><span class="annot"><span class="annottext">raw' :: String
+</span><a href="#local-6989586621679075141"><span class="hs-identifier hs-var hs-var">raw'</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679075143"><span class="hs-identifier hs-var">tmp</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;/hspectre.raw&quot;</span></span><span>
-</span><span id="line-58"></span><span>        </span><span id="local-6989586621679075126"><span class="annot"><span class="annottext">log' :: String
-</span><a href="#local-6989586621679075126"><span class="hs-identifier hs-var hs-var">log'</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679075129"><span class="hs-identifier hs-var">tmp</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><span id="line-58"></span><span>        </span><span id="local-6989586621679075140"><span class="annot"><span class="annottext">log' :: String
+</span><a href="#local-6989586621679075140"><span class="hs-identifier hs-var hs-var">log'</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679075143"><span class="hs-identifier hs-var">tmp</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;/hspectre.log&quot;</span></span><span>
-</span><span id="line-59"></span><span>    </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621679075125"><span class="annot"><span class="annottext">args :: [String]
-</span><a href="#local-6989586621679075125"><span class="hs-identifier hs-var hs-var">args</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-59"></span><span>    </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621679075139"><span class="annot"><span class="annottext">args :: [String]
+</span><a href="#local-6989586621679075139"><span class="hs-identifier hs-var hs-var">args</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;-64&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;-format nutbin&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;-raw &quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679075127"><span class="hs-identifier hs-var">raw'</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679075141"><span class="hs-identifier hs-var">raw'</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;=log &quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679075126"><span class="hs-identifier hs-var">log'</span></a></span><span> </span><span>
+</span><a href="#local-6989586621679075140"><span class="hs-identifier hs-var">log'</span></a></span><span> </span><span>
 </span><span id="line-60"></span><span>               </span><span class="hs-special">]</span><span> </span><span class="annot"><span class="annottext">[String] -&gt; [String] -&gt; [String]
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679075124"><span class="hs-identifier hs-var">incs</span></a></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; [String] -&gt; [String]
+</span><a href="#local-6989586621679075138"><span class="hs-identifier hs-var">incs</span></a></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; [String] -&gt; [String]
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679075130"><span class="hs-identifier hs-var">netlist</span></a></span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679075144"><span class="hs-identifier hs-var">netlist</span></a></span><span class="hs-special">]</span><span>
 </span><span id="line-61"></span><span>    </span><span class="annot"><span class="annottext">[CmdOption] -&gt; String -&gt; [String] -&gt; IO ()
 </span><span class="hs-identifier hs-var">command_</span></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679075122"><span class="hs-identifier hs-var">spectre</span></a></span><span> </span><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679075125"><span class="hs-identifier hs-var">args</span></a></span><span>
+</span><a href="#local-6989586621679075136"><span class="hs-identifier hs-var">spectre</span></a></span><span> </span><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621679075139"><span class="hs-identifier hs-var">args</span></a></span><span>
 </span><span id="line-62"></span><span>    </span><span class="annot"><span class="annottext">String -&gt; IO NutMeg
 </span><span class="hs-identifier hs-var">readFile'</span></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679075127"><span class="hs-identifier hs-var">raw'</span></a></span><span>
+</span><a href="#local-6989586621679075141"><span class="hs-identifier hs-var">raw'</span></a></span><span>
 </span><span id="line-63"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-64"></span><span>    </span><span id="local-6989586621679075122"><span class="annot"><span class="annottext">spectre :: String
-</span><a href="#local-6989586621679075122"><span class="hs-identifier hs-var hs-var">spectre</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-64"></span><span>    </span><span id="local-6989586621679075136"><span class="annot"><span class="annottext">spectre :: String
+</span><a href="#local-6989586621679075136"><span class="hs-identifier hs-var hs-var">spectre</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;spectre&quot;</span></span><span>
-</span><span id="line-65"></span><span>    </span><span id="local-6989586621679075124"><span class="annot"><span class="annottext">incs :: [String]
-</span><a href="#local-6989586621679075124"><span class="hs-identifier hs-var hs-var">incs</span></a></span></span><span>    </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">ShowS -&gt; [String] -&gt; [String]
+</span><span id="line-65"></span><span>    </span><span id="local-6989586621679075138"><span class="annot"><span class="annottext">incs :: [String]
+</span><a href="#local-6989586621679075138"><span class="hs-identifier hs-var hs-var">incs</span></a></span></span><span>    </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">ShowS -&gt; [String] -&gt; [String]
 forall a b. (a -&gt; b) -&gt; [a] -&gt; [b]
 </span><span class="hs-identifier hs-var">map</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;-I&quot;</span></span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679075131"><span class="hs-identifier hs-var">includes</span></a></span><span>
+</span><a href="#local-6989586621679075145"><span class="hs-identifier hs-var">includes</span></a></span><span>
 </span><span id="line-66"></span></pre></body></html>

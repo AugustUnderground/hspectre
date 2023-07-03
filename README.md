@@ -10,6 +10,9 @@ Haskell Module for communicating with Cadence Spectre.
 $ stack build
 ```
 
+**Note:** Make sure this is always installed in conjunction with the same
+version of [hnutmeg](https://github.com/augustunderground/hnutmeg).
+
 ## Examples
 
 ```haskell
@@ -34,7 +37,7 @@ Interactive mode commands
 | `sclGetParameter`         | [ ]         |                                     |
 | `sclListParameter`        | [ ]         |                                     |
 | `sclGetAttribute`         | [X]         | Get Netlist Parameter Value         |
-| `sclSetAttribute`         | [ ]         |                                     |
+| `sclSetAttribute`         | [X]         | Set Netlist Parameter Value         |
 | `sclListAttribute`        | [ ]         |                                     |
 | `sclGetAnalysis`          | [ ]         |                                     |
 | `sclGetCircuit`           | [ ]         |                                     |
