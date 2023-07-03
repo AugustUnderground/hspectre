@@ -5,7 +5,7 @@
 -- | Please see the README on GitHub at
 --   <a>https://github.com/augustunderground/hspectre#readme</a>
 @package hspectre
-@version 0.2.3.1
+@version 0.3.0.0
 
 
 -- | Communication between Haskell and Spectre
@@ -55,10 +55,10 @@ module Spectre.Interactive
 data Session
 Session :: !Pty -> !FilePath -> Session
 
--- | The Terminal
+-- | The pseudo terminal
 [pty] :: Session -> !Pty
 
--- | Temp Dir
+-- | Simulation data directory
 [dir] :: Session -> !FilePath
 
 -- | Name of a netlist Parameter
@@ -80,10 +80,10 @@ runAll :: Session -> IO NutMeg
 -- | Run all simulation analyses don't read results
 runAll_ :: Session -> IO ()
 
--- | Get Simulation Results
+-- | Get Simulation Results (Lazy)
 results :: Session -> IO NutMeg
 
--- | Read entire sessions simulation data, disregarding file offset
+-- | Get Simulation Results (Strict)
 results' :: Session -> IO NutMeg
 
 -- | Get Map of Available Simulation Analyses: (id, type)
@@ -91,6 +91,10 @@ listAnalysis :: Session -> IO [(String, Analysis)]
 
 -- | Run Selected Analysis only
 runAnalysis :: Session -> String -> IO NutMeg
+
+-- | Perform a number of simulation analyses for a given list of parameter
+--   maps and read the results only afterwards.
+sweep :: Session -> [Map Parameter Double] -> IO NutMeg
 
 -- | Get Netlist Parameter
 getParameter :: Session -> Parameter -> IO Double

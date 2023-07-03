@@ -7,22 +7,16 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 -- | Interactive Communication between Haskell and Spectre
-module Spectre.Interactive ( Session (..)
-                           , Parameter
+module Spectre.Interactive ( -- * Types
+                             Session (..), Parameter
                            -- * Session Management
-                           , startSession
-                           , startSession'
-                           , stopSession
+                           , startSession, startSession', stopSession
                            -- * Running Simulations
-                           , runAll, runAll_
-                           , results, results'
-                           , listAnalysis
-                           , runAnalysis
+                           , runAll, runAll_, results, results'
+                           , listAnalysis, runAnalysis, sweep
                            -- * Netlist Parameters
-                           , getParameter
-                           , setParameter
-                           , getParameters
-                           , setParameters
+                           , getParameter, setParameter
+                           , getParameters, setParameters
                            ) where
 
 import           Spectre
@@ -31,7 +25,8 @@ import qualified Data.ByteString.Char8 as CS
 import           Data.Char
 import qualified Data.Map              as M
 import           Data.Maybe                  (fromJust)
-import           Data.NutMeg
+import           Data.NutMeg                 (NutMeg)
+import qualified Data.NutMeg           as N
 import           Control.Monad               (when)
 import           System.Process
 import           System.Posix.Pty
@@ -39,14 +34,6 @@ import           System.IO.Temp
 import           System.Directory
 import           Text.RawString.QQ
 import           Text.Regex.TDFA
-
--- | Write offset to file
-writeOffset :: FilePath -> Int -> IO ()
-writeOffset dir = writeFile (dir ++ "/offset") . show
-
--- | Read offset
-readOffset :: FilePath -> IO Int
-readOffset dir = read <$> readFile (dir ++ "/offset")
 
 -- | Spectre Commands
 data Command = Close                        -- ^ Quit the Session
@@ -70,8 +57,8 @@ writeCommand :: Command -> BS.ByteString
 writeCommand cmd = CS.pack $ show cmd ++ "\n"
 
 -- | Spectre Interactive Session
-data Session = Session { pty    :: !Pty      -- ^ The Terminal
-                       , dir    :: !FilePath -- ^ Temp Dir
+data Session = Session { pty    :: !Pty      -- ^ The pseudo terminal
+                       , dir    :: !FilePath -- ^ Simulation data directory
                        }
 
 -- | Name of a netlist Parameter
@@ -111,7 +98,6 @@ startSession inc net dir' = do
     !_ <- spawnCommand $! "cat "    ++ log' ++ " > /dev/null &"
 
     let session = Session pty' dir'
-    writeOffset dir' 0
 
     !_ <- threadWaitReadPty pty' >> consumeOutput pty'
 
@@ -152,17 +138,13 @@ exec Session{..} ListAnalysis         = BS.intercalate "\n" . map parse
                 in CS.pack $ unwords grps
 exec Session{..} cmd                  = writePty pty (writeCommand cmd) >> consumeOutput pty
 
--- | Get Simulation Results
+-- | Get Simulation Results (Lazy)
 results :: Session -> IO NutMeg
-results Session{..} = do
-    offset <- readOffset dir
-    (!nutmeg, !offset') <- readNutRawWithOffset' offset (dir ++ "/hspectre.raw")
-    writeOffset dir offset'
-    pure nutmeg
+results Session{..} = N.readFile (dir ++ "/hspectre.raw")
 
--- | Read entire sessions simulation data, disregarding file offset
+-- | Get Simulation Results (Strict)
 results' :: Session -> IO NutMeg
-results' Session{..} = readNutRaw' (dir ++ "/hspectre.raw")
+results' Session{..} = N.readFile' (dir ++ "/hspectre.raw")
 
 -- | Run all simulation analyses
 runAll :: Session -> IO NutMeg
@@ -205,6 +187,13 @@ setParameter session param value = exec_ session (SetAttribute param value)
 -- | Get a list of Parameters
 setParameters :: Session -> M.Map Parameter Double -> IO (M.Map Parameter ())
 setParameters session = M.traverseWithKey (setParameter session) 
+
+-- | Perform a number of simulation analyses for a given list of parameter maps
+-- and read the results only afterwards.
+sweep :: Session -> [M.Map Parameter Double] -> IO NutMeg
+sweep session params = do
+    mapM_ (\p -> setParameters session p >> runAll_ session) params
+        >> results' session
 
 -- | Close a spectre interactive session
 stopSession :: Session -> IO ()

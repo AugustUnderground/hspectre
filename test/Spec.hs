@@ -2,11 +2,10 @@
 
 import Spectre
 import Spectre.Interactive
-import Data.NutMeg
+import qualified Data.NutMeg as N
 
-import           Control.Monad               (replicateM)
+import           Control.Monad               (replicateM, replicateM_)
 import           System.Posix.Pty
-import           Control.Scheduler           (Comp (..), traverseConcurrently, traverseConcurrently_, replicateConcurrently)
 import qualified Data.ByteString       as BS
 import qualified Data.ByteString.Char8 as CS
 import qualified Data.Map              as M
@@ -20,15 +19,14 @@ main = do
     -- runAll s
     -- writePty (pty s) "(sclListAnalysis)\n" 
 
-    !ss <- traverseConcurrently (ParN n') (\c -> startSession [] (dir' ++ [c] ++ net') (dir' ++ [c])) $ take n ['a' .. ]
+    -- !s <- startSession [] (dir' ++ net') dir'
+    -- replicateM_ 130 (runAll_ s)
 
-    putStrLn $ show n ++ " Parallel Simulations"
-    !re <- traverseConcurrently (ParN n') runAll ss
-    putStrLn "Done"
+    -- !nut <- N.readFile' (dir' ++ "/hspectre.raw")
 
     pure ()
   where
     n = 10
     n' = fromIntegral n
-    dir' = "/tmp/uhlmanny-"
+    dir' = "/home/uhlmanny/Workspace/hspectre/test"
     net' = "/tb.scs"

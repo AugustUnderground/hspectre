@@ -59,8 +59,7 @@ simulate includes netlist = do
     let args = [ "-64", "-format nutbin", "-raw " ++ raw', "=log " ++ log' 
                ] ++ incs ++ [netlist]
     command_ [] spectre args
-    readNutRaw' raw'
-    -- parseNutMeg <$> readNutRaw raw'
+    readFile' raw'
   where
     spectre = "spectre"
     incs    = map ("-I"++) includes
