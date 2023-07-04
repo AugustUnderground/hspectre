@@ -21,14 +21,14 @@ packages:
 - completed:
     name: hnutmeg
     pantry-tree:
-      sha256: 1ab4567ab2fb0981abd62693006aa011738b949b91994fe744b350090f23003c
+      sha256: 3a2a29e3849673e4ea985d779219f091c6d06a0117af7258698b775bd727f506
       size: 1834
-    sha256: 97f948471ecb2995f5b0aa4d2396d0f4b9e0d089da29bc3aff7053ed72fddb13
-    size: 2160993
-    url: https://github.com/AugustUnderground/hnutmeg/archive/1001bbf8ce05d6a5436d585a298f9cc12863399c.tar.gz
-    version: 0.3.2.0
+    sha256: 5f153ead32403966a3245d3b4450ffb87140374806c7ca3747a6c370e4d9dc42
+    size: 2160865
+    url: https://github.com/AugustUnderground/hnutmeg/archive/01c5cc8f86cb8b2c027302d0ea8ededa725df0eb.tar.gz
+    version: 0.3.3.0
   original:
-    url: https://github.com/AugustUnderground/hnutmeg/archive/1001bbf8ce05d6a5436d585a298f9cc12863399c.tar.gz
+    url: https://github.com/AugustUnderground/hnutmeg/archive/01c5cc8f86cb8b2c027302d0ea8ededa725df0eb.tar.gz
 snapshots:
 - completed:
     sha256: 428ec8d5ce932190d3cbe266b9eb3c175cd81e984babf876b64019e2cbe4ea68
