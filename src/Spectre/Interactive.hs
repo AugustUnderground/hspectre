@@ -12,7 +12,7 @@ module Spectre.Interactive ( -- * Types
                            -- * Session Management
                            , startSession, startSession', stopSession
                            -- * Running Simulations
-                           , runAll, runAll_, results, results'
+                           , runAll, runAll_, results
                            , listAnalysis, runAnalysis, sweep
                            -- * Netlist Parameters
                            , getParameter, setParameter
@@ -142,10 +142,6 @@ exec Session{..} cmd                  = writePty pty (writeCommand cmd) >> consu
 results :: Session -> IO NutMeg
 results Session{..} = N.readFile (dir ++ "/hspectre.raw")
 
--- | Get Simulation Results (Strict)
-results' :: Session -> IO NutMeg
-results' Session{..} = N.readFile' (dir ++ "/hspectre.raw")
-
 -- | Run all simulation analyses
 runAll :: Session -> IO NutMeg
 runAll session = exec_ session RunAll >> results session
@@ -192,7 +188,7 @@ setParameters session = M.traverseWithKey (setParameter session)
 -- and read the results only afterwards.
 sweep :: Session -> [M.Map Parameter Double] -> IO NutMeg
 sweep session params = mapM_ (\p -> setParameters session p >> runAll_ session) params
-                        >> results' session
+                        >> results session
 
 -- | Close a spectre interactive session
 stopSession :: Session -> IO ()

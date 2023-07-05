@@ -6,9 +6,10 @@ module Spectre ( Analysis (..)
                , simulate
                ) where
 
-import Data.NutMeg
-import System.Command
-import System.IO.Temp
+import           Data.NutMeg         (NutMeg)
+import qualified Data.NutMeg    as N
+import           System.Command
+import           System.IO.Temp
 
 -- | Available Simulation Analyses
 data Analysis = AC      -- ^ AC Analysis
@@ -59,7 +60,7 @@ simulate includes netlist = do
     let args = [ "-64", "-format nutbin", "-raw " ++ raw', "=log " ++ log' 
                ] ++ incs ++ [netlist]
     command_ [] spectre args
-    readFile' raw'
+    N.readFile raw'
   where
     spectre = "spectre"
     incs    = map ("-I"++) includes
